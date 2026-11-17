@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Bath Fittings — Plumber Partner Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        navy: { 800: '#161b26', 900: '#0f131c', 950: '#090c12' },
+                        sanitary: { 50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-100 text-slate-900 font-sans antialiased min-h-screen flex flex-col selection:bg-amber-400 selection:text-navy-950">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+    <!-- Top Luxury Header -->
+    <header class="bg-navy-950 border-b border-amber-500/25 sticky top-0 z-40 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
+            <!-- Brand Plaque & Tagline -->
+            <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                <div class="shrink-0 w-32 sm:w-40 rounded-xl overflow-hidden shadow-lg">
+                    <!-- Official Real bath fittings® Brand Logo (Self-Contained Vector) -->
+                    <svg viewBox="0 0 1280 530" class="w-full h-auto block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Real bath fittings logo">
+                        <defs>
+                            <linearGradient id="rbfGoldBorder" x1="0%" y1="0%" x2="100%" y2="25%">
+                                <stop offset="0%" stop-color="#D4AF5A"/>
+                                <stop offset="22%" stop-color="#FFF5C8"/>
+                                <stop offset="48%" stop-color="#C9A048"/>
+                                <stop offset="76%" stop-color="#FBF0BE"/>
+                                <stop offset="100%" stop-color="#C69B42"/>
+                            </linearGradient>
+                            <linearGradient id="rbfGoldFill" x1="5%" y1="10%" x2="95%" y2="90%">
+                                <stop offset="0%" stop-color="#DFBC68"/>
+                                <stop offset="24%" stop-color="#FFF7CE"/>
+                                <stop offset="50%" stop-color="#CFA54B"/>
+                                <stop offset="76%" stop-color="#FFF2BC"/>
+                                <stop offset="100%" stop-color="#C5983E"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Charcoal Plaque with Metallic Gold Frame -->
+                        <rect x="10" y="10" width="1260" height="510" rx="68" fill="#1E1D1B" stroke="url(#rbfGoldBorder)" stroke-width="20"/>
+                        <!-- Calligraphic "R" -->
+                        <path d="M196 368 C178 368, 174 345, 192 315 C224 264, 266 208, 304 176 C318 164, 336 168, 334 186 C330 218, 294 274, 262 320 C244 346, 224 368, 196 368 Z" fill="url(#rbfGoldFill)"/>
+                        <path d="M168 292 C142 292, 130 272, 142 242 C164 188, 255 112, 378 96 C462 85, 514 118, 504 172 C494 226, 422 272, 336 286 C366 326, 396 368, 434 388 C456 398, 468 386, 480 374 L492 392 C472 418, 436 434, 400 422 C354 406, 314 348, 282 294 C266 294, 254 282, 264 268 C274 256, 294 254, 316 252 C394 244, 452 204, 458 166 C462 140, 430 124, 374 132 C276 146, 196 206, 180 248 C174 262, 182 268, 196 266 L186 290 C180 292, 174 292, 168 292 Z" fill="url(#rbfGoldFill)"/>
+                        <!-- Calligraphic "e" -->
+                        <path d="M532 326 C598 324, 672 284, 682 236 C690 198, 654 180, 604 196 C538 218, 486 286, 496 346 C506 402, 576 414, 646 376 C666 365, 678 352, 686 340 L666 322 C642 348, 594 370, 558 358 C536 350, 528 338, 532 326 Z M544 294 C558 258, 594 226, 624 222 C642 220, 648 232, 642 246 C632 268, 586 292, 544 294 Z" fill="url(#rbfGoldFill)"/>
+                        <!-- Calligraphic "a" -->
+                        <path d="M894 224 C866 192, 804 186, 748 224 C692 262, 666 334, 694 374 C720 410, 784 394, 838 338 C832 366, 838 392, 868 398 C894 404, 922 386, 940 362 L922 344 C908 360, 892 366, 882 360 C872 354, 876 330, 892 292 C906 258, 922 228, 932 208 L894 202 L894 224 Z M846 278 C814 326, 764 362, 738 352 C716 344, 724 294, 764 258 C798 228, 842 224, 864 246 C860 256, 854 268, 846 278 Z" fill="url(#rbfGoldFill)"/>
+                        <!-- Calligraphic "l" -->
+                        <path d="M976 398 C944 398, 934 372, 954 328 C986 258, 1044 166, 1094 114 C1110 98, 1134 104, 1130 126 C1124 162, 1064 258, 1012 332 C998 352, 998 364, 1012 364 C1026 364, 1046 348, 1064 328 L1082 346 C1054 378, 1014 398, 976 398 Z" fill="url(#rbfGoldFill)"/>
+                        <!-- Registered Trademark ® -->
+                        <circle cx="1142" cy="96" r="34" fill="none" stroke="#FFFFFF" stroke-width="6.5"/>
+                        <text x="1142" y="109" text-anchor="middle" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="38">R</text>
+                        <!-- Subtitle "bath fittings" -->
+                        <text x="1194" y="468" text-anchor="end" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-weight="400" font-size="74" letter-spacing="1.5">bath fittings</text>
+                    </svg>
+                </div>
+                <div class="hidden md:block min-w-0">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-extrabold tracking-widest uppercase bg-amber-400/15 text-amber-300 border border-amber-400/30">Partner Portal</span>
+                    <p class="text-xs text-slate-400 truncate mt-1" data-i18n="tagline">Strength. Style. Perfection. — Plumber Partner Portal</p>
+                </div>
+            </div>
+
+            <!-- Right Controls -->
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <button type="button" onclick="openCloudSetupModal()" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-navy-900 border border-slate-700 hover:border-amber-400/50 text-[11px] sm:text-xs font-semibold text-slate-200 transition">
+                    <span id="cloud-sync-dot" class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                    <span id="cloud-sync-text" class="hidden sm:inline">Connecting Cloud...</span>
+                    <span class="sm:hidden">Cloud</span>
+                </button>
+
+                <button type="button" onclick="toggleLanguage()" class="px-3 py-1.5 rounded-xl bg-navy-900 hover:bg-navy-800 border border-slate-700 text-amber-200 text-xs font-bold flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-language text-amber-400"></i>
+                    <span id="lang-btn-text">हिंदी / Hinglish</span>
+                </button>
+
+                <button type="button" onclick="openAdminDirect()" class="px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-amber-300 text-xs font-bold flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span data-i18n="companyAdmin">Company Admin</span>
+                </button>
+
+                <button id="logout-btn" type="button" onclick="handleLogout()" class="hidden items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow transition">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span data-i18n="logout">Logout</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- 1. AUTHENTICATION VIEW (PLUMBER & COMPANY ADMIN LOGIN)                -->
+    <!-- ===================================================================== -->
+    <main id="auth-view" class="flex-1 bg-gradient-to-br from-navy-950 via-navy-900 to-slate-900 text-white relative overflow-hidden">
+        <!-- Decorative Background Glow & Technical Blueprint Grid -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#fbbf24 1px, transparent 1px); background-size: 28px 28px;"></div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-sanitary-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+                <!-- Left Value Proposition & Custom Sanitaryware Vector Illustration -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 text-xs font-bold">
+                        <i class="fa-solid fa-award"></i>
+                        <span>Official Real Bath Fittings Partner Network</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+                        Earn More on Every <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400">Real Bath Fittings</span> Installation.
+                    </h1>
+
+                    <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        Connect directly with Real Bath Fittings using your company-issued Plumber ID or registered mobile number. Unlock exclusive trade schemes, instant UPI cashback, customer combo offers, and certified technical training.
+                    </p>
+
+                    <!-- Feature Highlight Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 space-y-2">
+                            <div class="w-10 h-10 rounded-xl bg-sanitary-500/20 text-sanitary-400 flex items-center justify-center font-extrabold text-lg">₹</div>
+                            <h3 class="font-bold text-sm text-white">Direct Cash & Gifts</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Redeem loyalty points directly to your UPI or claim pro toolkits.</p>
+                        </div>
+
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 space-y-2">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-base">
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
+                            <h3 class="font-bold text-sm text-white">Close More Deals</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Share customer combo offers & 10-year warranty pitches on WhatsApp.</p>
+                        </div>
+
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 space-y-2">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-base">
+                                <i class="fa-solid fa-certificate"></i>
+                            </div>
+                            <h3 class="font-bold text-sm text-white">Grow With Us</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Get certified technician status & priority homeowner site leads.</p>
+                        </div>
+                    </div>
+
+                    <!-- Custom Luxury Sanitaryware Schematic Graphic Banner -->
+                    <div class="hidden sm:flex items-center justify-between gap-6 p-5 rounded-3xl bg-gradient-to-r from-white/5 to-amber-500/10 border border-amber-400/20">
+                        <div class="space-y-1.5">
+                            <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-300">Certified Plumber Advantage</span>
+                            <h4 class="text-base font-extrabold text-white">Snap Site Photo • Verify QR • Instant Points</h4>
+                            <p class="text-xs text-slate-300">Log COMPAQ Cisterns, SS-304 Sinks & Thermostatic Diverters in 15 seconds.</p>
+                        </div>
+                        <!-- Precision Chrome Faucet & Water Droplet Vector Graphic -->
+                        <svg viewBox="0 0 180 110" class="w-36 h-24 shrink-0" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="chromeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#F8FAFC"/>
+                                    <stop offset="50%" stop-color="#94A3B8"/>
+                                    <stop offset="100%" stop-color="#E2E8F0"/>
+                                </linearGradient>
+                                <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#FDE68A"/>
+                                    <stop offset="100%" stop-color="#D97706"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Base Collar -->
+                            <rect x="28" y="84" width="38" height="12" rx="4" fill="url(#goldAccent)"/>
+                            <!-- Faucet Body & Gooseneck Spout -->
+                            <path d="M36 84 L36 42 C36 20, 96 20, 96 46 L96 56 L82 56 L82 46 C82 34, 50 34, 50 46 L50 84 Z" fill="url(#chromeGrad)"/>
+                            <!-- Mixer Lever -->
+                            <rect x="24" y="48" width="44" height="8" rx="4" fill="url(#goldAccent)"/>
+                            <!-- Water Droplet -->
+                            <path d="M89 66 C89 66, 98 78, 98 85 C98 90, 94 94, 89 94 C84 94, 80 90, 80 85 C80 78, 89 66, 89 66 Z" fill="#38BDF8"/>
+                            <!-- Shield Badge -->
+                            <circle cx="144" cy="54" r="24" fill="#1E293B" stroke="url(#goldAccent)" stroke-width="3"/>
+                            <path d="M135 54 L141 60 L154 47" fill="none" stroke="#FBBF24" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Right Login Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white text-slate-900 rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-200 max-w-md mx-auto">
+                        <!-- Role Switcher Tabs -->
+                        <div class="grid grid-cols-2 gap-1.5 p-1.5 rounded-2xl bg-slate-100 mb-6">
+                            <button id="role-tab-plumber" type="button" onclick="switchLoginRole('plumber')" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold bg-navy-950 text-white shadow transition">
+                                <i class="fa-solid fa-wrench text-amber-400"></i>
+                                <span>Plumber Login</span>
+                            </button>
+                            <button id="role-tab-admin" type="button" onclick="switchLoginRole('admin')" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition">
+                                <i class="fa-solid fa-shield-halved text-amber-600"></i>
+                                <span>Company Admin</span>
+                            </button>
+                        </div>
+
+                        <!-- Card Brand Header -->
+                        <div class="text-center mb-6">
+                            <div class="w-40 mx-auto mb-3 rounded-xl overflow-hidden shadow-md">
+                                <svg viewBox="0 0 1280 530" class="w-full h-auto block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Real bath fittings logo">
+                                    <rect x="10" y="10" width="1260" height="510" rx="68" fill="#1E1D1B" stroke="url(#rbfGoldBorder)" stroke-width="20"/>
+                                    <path d="M196 368 C178 368, 174 345, 192 315 C224 264, 266 208, 304 176 C318 164, 336 168, 334 186 C330 218, 294 274, 262 320 C244 346, 224 368, 196 368 Z" fill="url(#rbfGoldFill)"/>
+                                    <path d="M168 292 C142 292, 130 272, 142 242 C164 188, 255 112, 378 96 C462 85, 514 118, 504 172 C494 226, 422 272, 336 286 C366 326, 396 368, 434 388 C456 398, 468 386, 480 374 L492 392 C472 418, 436 434, 400 422 C354 406, 314 348, 282 294 C266 294, 254 282, 264 268 C274 256, 294 254, 316 252 C394 244, 452 204, 458 166 C462 140, 430 124, 374 132 C276 146, 196 206, 180 248 C174 262, 182 268, 196 266 L186 290 C180 292, 174 292, 168 292 Z" fill="url(#rbfGoldFill)"/>
+                                    <path d="M532 326 C598 324, 672 284, 682 236 C690 198, 654 180, 604 196 C538 218, 486 286, 496 346 C506 402, 576 414, 646 376 C666 365, 678 352, 686 340 L666 322 C642 348, 594 370, 558 358 C536 350, 528 338, 532 326 Z M544 294 C558 258, 594 226, 624 222 C642 220, 648 232, 642 246 C632 268, 586 292, 544 294 Z" fill="url(#rbfGoldFill)"/>
+                                    <path d="M894 224 C866 192, 804 186, 748 224 C692 262, 666 334, 694 374 C720 410, 784 394, 838 338 C832 366, 838 392, 868 398 C894 404, 922 386, 940 362 L922 344 C908 360, 892 366, 882 360 C872 354, 876 330, 892 292 C906 258, 922 228, 932 208 L894 202 L894 224 Z M846 278 C814 326, 764 362, 738 352 C716 344, 724 294, 764 258 C798 228, 842 224, 864 246 C860 256, 854 268, 846 278 Z" fill="url(#rbfGoldFill)"/>
+                                    <path d="M976 398 C944 398, 934 372, 954 328 C986 258, 1044 166, 1094 114 C1110 98, 1134 104, 1130 126 C1124 162, 1064 258, 1012 332 C998 352, 998 364, 1012 364 C1026 364, 1046 348, 1064 328 L1082 346 C1054 378, 1014 398, 976 398 Z" fill="url(#rbfGoldFill)"/>
+                                    <circle cx="1142" cy="96" r="34" fill="none" stroke="#FFFFFF" stroke-width="6.5"/>
+                                    <text x="1142" y="109" text-anchor="middle" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="38">R</text>
+                                    <text x="1194" y="468" text-anchor="end" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-weight="400" font-size="74" letter-spacing="1.5">bath fittings</text>
+                                </svg>
+                            </div>
+                            <h2 id="login-card-title" class="text-xl font-extrabold text-slate-900" data-i18n="loginHeading">Plumber Partner Login</h2>
+                            <p id="login-card-subtitle" class="text-xs text-slate-500 mt-1" data-i18n="loginSub">Enter your Plumber ID or Mobile Number & Password</p>
+                        </div>
+
+                        <form onsubmit="handleLogin(event)" class="space-y-4">
+                            <div>
+                                <label id="login-id-label" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5" data-i18n="plumberIdLabel">Plumber ID or Mobile Number</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+                                        <i class="fa-solid fa-id-badge"></i>
+                                    </span>
+                                    <input id="login-id-input" type="text" required placeholder="e.g. RBF-PLB-1042 or 9822010420" class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition">
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">Password</label>
+                                    <span id="login-demo-hint" class="text-[11px] font-semibold text-sanitary-700"></span>
+                                </div>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+                                        <i class="fa-solid fa-lock"></i>
+                                    </span>
+                                    <input id="login-pass-input" type="password" required placeholder="••••••••" class="w-full pl-10 pr-11 py-3 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition">
+                                    <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-700">
+                                        <i id="pass-eye-icon" class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="plumber-login-extras" class="flex items-center justify-between text-xs pt-0.5">
+                                <label class="inline-flex items-center gap-2 cursor-pointer text-slate-600 font-medium">
+                                    <input id="remember-me-checkbox" type="checkbox" checked class="rounded border-slate-300 text-amber-600 focus:ring-amber-500">
+                                    <span>Remember my login on this device</span>
+                                </label>
+                                <button type="button" onclick="forgotPasswordHelper()" class="font-bold text-sanitary-700 hover:text-sanitary-800">Forgot Password?</button>
+                            </div>
+
+                            <button type="submit" id="login-submit-btn" class="w-full py-3.5 px-4 rounded-xl bg-navy-950 hover:bg-navy-800 text-amber-200 font-bold text-sm shadow-lg flex items-center justify-center gap-2 transition active:scale-[0.99]">
+                                <i class="fa-solid fa-right-to-bracket"></i>
+                                <span id="login-submit-text" data-i18n="loginBtn">Login to Partner Portal</span>
+                            </button>
+                        </form>
+
+                        <!-- Quick One-Tap Plumber Access Chips -->
+                        <div id="quick-plumber-section" class="mt-6 pt-5 border-t border-slate-200 space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Quick Partner Access</span>
+                            </div>
+                            <div id="quick-plumber-chips" class="grid grid-cols-3 gap-2"></div>
+
+                            <button type="button" onclick="openModal('request-id-modal')" class="w-full py-2.5 px-4 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs flex items-center justify-center gap-2 transition">
+                                <i class="fa-solid fa-user-plus text-sanitary-600"></i>
+                                <span>New Plumber? Request Company ID</span>
+                            </button>
+                        </div>
+
+                        <!-- Admin Credentials Hint Box (Visible in Admin Role Mode) -->
+                        <div id="admin-login-hint-box" class="hidden mt-5 p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-900 space-y-1">
+                            <div class="font-bold flex items-center gap-1.5">
+                                <i class="fa-solid fa-key text-amber-600"></i>
+                                <span>Head Office Access</span>
+                            </div>
+                            <p>Enter official company administrator credentials.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- 2. PLUMBER PARTNER PORTAL VIEW                                        -->
+    <!-- ===================================================================== -->
+    <section id="portal-view" class="hidden flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
+        <!-- Plumber Profile & Live Balance Banner -->
+        <div class="bg-gradient-to-r from-navy-950 via-navy-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-500/20 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div class="space-y-2">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span id="portal-plumber-tier" class="px-3 py-1 rounded-full text-xs font-extrabold bg-amber-400 text-navy-950">Gold Partner</span>
+                    <span id="portal-plumber-id" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/10 text-amber-200">RBF-PLB-1042</span>
+                </div>
+                <h2 id="portal-plumber-name" class="text-2xl sm:text-3xl font-black tracking-tight">Rajesh Kumar</h2>
+                <p class="text-xs sm:text-sm text-slate-300 flex flex-wrap items-center gap-3">
+                    <span><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i><span id="portal-plumber-city">Pune, Maharashtra</span></span>
+                    <span>•</span>
+                    <span><i class="fa-solid fa-store text-sanitary-400 mr-1"></i>Dealer: <strong id="portal-plumber-dealer" class="text-white">Shree Ganesh Sanitaryware</strong></span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:flex items-center gap-3 sm:gap-4">
+                <div class="bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
+                    <p class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Available Points</p>
+                    <p id="portal-points-val" class="text-xl sm:text-2xl font-black text-amber-300 mt-0.5">4,850</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
+                    <p class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Total Cashback</p>
+                    <p id="portal-earnings-val" class="text-xl sm:text-2xl font-black text-emerald-400 mt-0.5">₹14,200</p>
+                </div>
+                <button type="button" onclick="openClaimModal()" class="col-span-2 sm:col-span-1 py-3.5 px-5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-navy-950 font-extrabold text-xs sm:text-sm shadow-lg flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-camera"></i>
+                    <span>Log Installation</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Portal Navigation Tabs -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1">
+            <button id="ptab-dashboard" type="button" onclick="switchPortalTab('dashboard')" class="portal-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-navy-950 text-amber-200 whitespace-nowrap transition">
+                <i class="fa-solid fa-gauge-high mr-1.5"></i>Dashboard & Rewards
+            </button>
+            <button id="ptab-plumber-schemes" type="button" onclick="switchPortalTab('plumber-schemes')" class="portal-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:bg-slate-200/70 whitespace-nowrap transition">
+                <i class="fa-solid fa-gift mr-1.5"></i>Plumber Schemes
+            </button>
+            <button id="ptab-customer-schemes" type="button" onclick="switchPortalTab('customer-schemes')" class="portal-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:bg-slate-200/70 whitespace-nowrap transition">
+                <i class="fa-solid fa-tags mr-1.5"></i>Customer Schemes & Catalog
+            </button>
+            <button id="ptab-grow" type="button" onclick="switchPortalTab('grow')" class="portal-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:bg-slate-200/70 whitespace-nowrap transition">
+                <i class="fa-solid fa-seedling mr-1.5"></i>Grow With Us
+            </button>
+        </div>
+
+        <!-- TAB 1: DASHBOARD & REWARDS -->
+        <div id="pview-dashboard" class="portal-tab-view grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-7 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-extrabold text-slate-900">Redeem Loyalty Points</h3>
+                    <span class="text-xs font-semibold text-slate-500">1 Point = ₹1 Value</span>
+                </div>
+                <div id="rewards-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+            </div>
+
+            <div class="lg:col-span-5 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-extrabold text-slate-900">Recent Installations & Claims</h3>
+                    <button type="button" onclick="openClaimModal()" class="text-xs font-bold text-sanitary-700 hover:underline">+ New Claim</button>
+                </div>
+                <div id="activity-feed" class="space-y-3"></div>
+            </div>
+        </div>
+
+        <!-- TAB 2: PLUMBER SCHEMES -->
+        <div id="pview-plumber-schemes" class="portal-tab-view hidden space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Active Plumber Incentive Schemes</h3>
+                    <p class="text-xs text-slate-500">Install eligible Real Bath Fittings products, snap a site photo, and claim bonus points.</p>
+                </div>
+                <button type="button" onclick="openClaimModal()" class="px-4 py-2.5 rounded-xl bg-navy-950 text-amber-200 text-xs font-bold self-start">
+                    <i class="fa-solid fa-plus mr-1"></i> Submit Installation Proof
+                </button>
+            </div>
+            <div id="plumber-schemes-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5"></div>
+        </div>
+
+        <!-- TAB 3: CUSTOMER SCHEMES & PRODUCT CATALOG -->
+        <div id="pview-customer-schemes" class="portal-tab-view hidden space-y-8">
+            <div class="space-y-4">
+                <div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Homeowner & Customer Offers</h3>
+                    <p class="text-xs text-slate-500">Share these official offers on WhatsApp to help your customers choose Real Bath Fittings.</p>
+                </div>
+                <div id="customer-schemes-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <h3 class="text-xl font-extrabold text-slate-900">Digital Product & Points Catalog</h3>
+                        <p class="text-xs text-slate-500">Show MRP, warranty, and earn points on every fitting.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button type="button" onclick="filterCatalog('All')" class="cat-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-navy-950 text-white">All</button>
+                        <button type="button" onclick="filterCatalog('Cisterns')" class="cat-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-700">Cisterns</button>
+                        <button type="button" onclick="filterCatalog('Sinks')" class="cat-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-700">Sinks</button>
+                        <button type="button" onclick="filterCatalog('Faucets')" class="cat-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-700">Faucets</button>
+                    </div>
+                </div>
+                <div id="product-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            </div>
+        </div>
+
+        <!-- TAB 4: GROW WITH US -->
+        <div id="pview-grow" class="portal-tab-view hidden grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-7 space-y-4">
+                <div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Technical Installation Certification</h3>
+                    <p class="text-xs text-slate-500">Complete quick 3-minute installation guides to earn +100 bonus points per module.</p>
+                </div>
+                <div id="training-modules-grid" class="space-y-3"></div>
+            </div>
+
+            <div class="lg:col-span-5 space-y-4">
+                <div class="bg-gradient-to-br from-navy-950 to-slate-900 text-white rounded-3xl p-6 border border-amber-500/30 space-y-4 shadow-lg">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-400/20 text-amber-300 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold">Refer Fellow Plumbers</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Invite fellow plumbers in your city to join the Real Bath Fittings Partner Network. Both of you earn <strong>500 Bonus Points</strong> when they log their first installation!
+                    </p>
+                    <div class="p-3.5 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-between gap-2">
+                        <span id="referral-code-display" class="font-mono font-extrabold text-sm text-amber-300">REF-RBF-PLB-1042</span>
+                        <button type="button" onclick="copyReferralCode()" class="px-3 py-1.5 rounded-xl bg-amber-400 text-navy-950 font-bold text-xs hover:bg-amber-300 transition">
+                            Copy Invite
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 3. COMPANY ADMIN PORTAL VIEW                                          -->
+    <!-- ===================================================================== -->
+    <section id="admin-view" class="hidden flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
+        <div class="bg-navy-950 text-white rounded-3xl p-6 sm:p-8 border border-amber-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
+            <div>
+                <span class="px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-amber-400/20 text-amber-300">Head Office Console</span>
+                <h2 class="text-2xl sm:text-3xl font-black mt-2">Real Bath Fittings — Admin Control</h2>
+                <p class="text-xs text-slate-400 mt-1">Verify plumber installation photos, approve loyalty points, issue new Plumber IDs, and publish schemes.</p>
+            </div>
+            <div class="grid grid-cols-3 gap-3 text-center">
+                <div class="bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
+                    <p class="text-[10px] uppercase text-slate-400 font-bold">Plumbers</p>
+                    <p id="admin-stat-plumbers" class="text-xl font-black text-white mt-0.5">3</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
+                    <p class="text-[10px] uppercase text-slate-400 font-bold">Pending Claims</p>
+                    <p id="admin-stat-pending" class="text-xl font-black text-amber-300 mt-0.5">1</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
+                    <p class="text-[10px] uppercase text-slate-400 font-bold">ID Requests</p>
+                    <p id="admin-stat-requests" class="text-xl font-black text-sanitary-400 mt-0.5">1</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Left: Claims Queue & ID Requests -->
+            <div class="lg:col-span-7 space-y-6">
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="text-lg font-extrabold text-slate-900">Installation Claims & Photo Verification</h3>
+                    <div id="admin-claims-list" class="space-y-3"></div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="text-lg font-extrabold text-slate-900">New Plumber ID Requests</h3>
+                    <div id="admin-requests-list" class="space-y-3"></div>
+                </div>
+            </div>
+
+            <!-- Right: Issue Plumber ID, Registered List & Launch Scheme -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="text-lg font-extrabold text-slate-900">Issue New Plumber ID & Password</h3>
+                    <form onsubmit="adminCreatePlumber(event)" class="space-y-3">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-1">Plumber ID</label>
+                                <input id="adm-plb-id" type="text" required placeholder="RBF-PLB-1120" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-mono font-bold">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-1">Password</label>
+                                <input id="adm-plb-pass" type="text" required value="real1234" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-bold">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-1">Full Name</label>
+                                <input id="adm-plb-name" type="text" required placeholder="Plumber Name" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-1">Mobile Number</label>
+                                <input id="adm-plb-mobile" type="tel" required placeholder="98XXXXXXXX" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-1">City / Area</label>
+                                <input id="adm-plb-city" type="text" required placeholder="City, State" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-600 mb-1">Authorized Dealer</label>
+                                <input id="adm-plb-dealer" type="text" required placeholder="Dealer Shop Name" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full py-2.5 rounded-xl bg-navy-950 hover:bg-navy-800 text-amber-200 font-bold text-xs transition">
+                            Create & Activate Plumber Account
+                        </button>
+                    </form>
+                </div>
+
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="text-lg font-extrabold text-slate-900">Publish New Plumber Scheme</h3>
+                    <form onsubmit="adminCreateScheme(event)" class="space-y-3">
+                        <input id="adm-sch-title" type="text" required placeholder="Scheme Title (e.g. Diwali Faucet Bonanza)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                        <input id="adm-sch-product" type="text" required placeholder="Eligible Product Range" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                        <div class="grid grid-cols-2 gap-3">
+                            <input id="adm-sch-pts" type="number" required placeholder="Points per Unit (e.g. 500)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                            <input id="adm-sch-valid" type="text" required placeholder="Valid Until (e.g. 31 Mar 2027)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs">
+                        </div>
+                        <textarea id="adm-sch-desc" rows="2" required placeholder="Scheme reward details..." class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs"></textarea>
+                        <button type="submit" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-navy-950 font-extrabold text-xs transition">
+                            Publish Scheme Live
+                        </button>
+                    </form>
+                </div>
+
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+                    <h3 class="text-base font-extrabold text-slate-900">Active Registered Plumbers</h3>
+                    <div id="admin-plumbers-list" class="space-y-2 max-h-60 overflow-y-auto"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- MODALS                                                                -->
+    <!-- ===================================================================== -->
+
+    <!-- Modal: Log Product Installation + Live Photo Capture (<500 KB) -->
+    <div id="claim-modal" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-extrabold text-slate-900">Log Product Installation</h3>
+                <button type="button" onclick="closeModal('claim-modal')" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="submitInstallationClaim(event)" class="space-y-3.5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">Select Active Scheme</label>
+                    <select id="claim-scheme-select" onchange="updateClaimPreview()" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-xs font-bold"></select>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">Quantity Installed</label>
+                        <input id="claim-qty" type="number" min="1" max="50" value="1" oninput="updateClaimPreview()" required class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-xs font-bold">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1">Estimated Reward</label>
+                        <div id="claim-points-preview" class="px-3 py-2.5 rounded-xl bg-amber-50 border border-amber-200 text-xs font-extrabold text-amber-800">+500 Points</div>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">Box QR Serial / Dealer Invoice No.</label>
+                    <input id="claim-code" type="text" required placeholder="e.g. RBF-QR-8821 or INV-402" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-xs font-mono">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">Customer Name & Site Location</label>
+                    <input id="claim-customer" type="text" required placeholder="e.g. Mr. Sharma - Wakad" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-xs">
+                </div>
+
+                <!-- Live Camera Photo Capture (< 500 KB Auto-Compression) -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">Live Site Photo of Installed Product <span class="text-slate-400 font-normal">(Auto-compressed &lt;500 KB)</span></label>
+                    <input id="claim-photo-input" type="file" accept="image/*" capture="environment" onchange="handleClaimPhotoSelected(event)" class="hidden">
+                    <label id="claim-photo-dropzone" for="claim-photo-input" class="flex flex-col items-center justify-center gap-1.5 p-4 rounded-2xl border-2 border-dashed border-slate-300 hover:border-amber-500 bg-slate-50 cursor-pointer text-center transition">
+                        <i class="fa-solid fa-camera text-xl text-sanitary-600"></i>
+                        <span class="text-xs font-bold text-slate-700">Tap to Take Live Photo or Upload</span>
+                        <span class="text-[11px] text-slate-400">Clear photo of fitted Real Bath Fittings product</span>
+                    </label>
+                    <div id="claim-photo-preview-wrap" class="hidden relative rounded-2xl overflow-hidden border border-slate-300">
+                        <img id="claim-photo-preview-img" src="" alt="Preview" class="w-full h-40 object-cover">
+                        <button type="button" onclick="clearClaimPhoto()" class="absolute top-2 right-2 px-2.5 py-1 rounded-lg bg-rose-600 text-white text-[11px] font-bold shadow">
+                            Retake
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3 rounded-xl bg-navy-950 hover:bg-navy-800 text-amber-200 font-bold text-xs shadow-lg transition">
+                    Submit Installation Claim
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Full-Screen Site Photo Viewer -->
+    <div id="photo-viewer-modal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-4 shadow-2xl space-y-3">
+            <div class="flex items-center justify-between gap-2">
+                <p id="photo-viewer-caption" class="text-xs font-bold text-slate-800 truncate"></p>
+                <button type="button" onclick="closeModal('photo-viewer-modal')" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 shrink-0">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <img id="photo-viewer-img" src="" alt="Installation Site Proof" class="w-full max-h-[70vh] object-contain rounded-2xl bg-slate-100">
+        </div>
+    </div>
+
+    <!-- Modal: Redeem Reward -->
+    <div id="redeem-modal" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 id="redeem-modal-title" class="text-lg font-extrabold text-slate-900">Redeem Reward</h3>
+                <button type="button" onclick="closeModal('redeem-modal')" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p id="redeem-modal-desc" class="text-xs text-slate-500"></p>
+            <form onsubmit="confirmRedemption(event)" class="space-y-4">
+                <div>
+                    <label id="redeem-input-label" class="block text-xs font-bold text-slate-700 mb-1">Enter UPI ID or Delivery Address</label>
+                    <input id="redeem-destination-input" type="text" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm">
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow transition">
+                    Confirm Redemption
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Training Module Guide -->
+    <div id="training-modal" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 id="training-modal-title" class="text-lg font-extrabold text-slate-900">Installation Guide</h3>
+                <button type="button" onclick="closeModal('training-modal')" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <ol id="training-steps-list" class="list-decimal list-inside space-y-2 text-xs text-slate-700 bg-slate-50 p-4 rounded-2xl border border-slate-200"></ol>
+            <button id="complete-training-btn" type="button" onclick="completeTrainingModule()" class="w-full py-3 rounded-xl bg-navy-950 text-amber-200 font-bold text-xs disabled:opacity-50">
+                Mark Completed & Claim Points
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal: Request New Plumber ID -->
+    <div id="request-id-modal" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-extrabold text-slate-900">Request Company Plumber ID</h3>
+                <button type="button" onclick="closeModal('request-id-modal')" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="submitIdRequest(event)" class="space-y-3">
+                <input id="req-name" type="text" required placeholder="Your Full Name" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs">
+                <input id="req-mobile" type="tel" required placeholder="WhatsApp Mobile Number" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs">
+                <input id="req-city" type="text" required placeholder="City & State" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs">
+                <input id="req-dealer" type="text" required placeholder="Preferred Local Real Bath Fittings Dealer" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs">
+                <button type="submit" class="w-full py-3 rounded-xl bg-navy-950 text-amber-200 font-bold text-xs">
+                    Submit Registration Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Firebase Cloud Connection Setup -->
+    <div id="cloud-setup-modal" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-cloud text-sanitary-600"></i>
+                    <span>Firebase Cloud Connection</span>
+                </h3>
+                <button type="button" onclick="closeModal('cloud-setup-modal')" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="fb-setup-status" class="p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs"></div>
+            <form onsubmit="saveCustomFirebaseConfig(event)" class="space-y-3">
+                <label class="block text-xs font-bold text-slate-700">Custom Firebase Web App Config (Optional override)</label>
+                <textarea id="fb-config-input" rows="5" placeholder='{"apiKey": "...", "authDomain": "...", "projectId": "..."}' class="w-full px-3 py-2 rounded-xl border border-slate-300 font-mono text-xs"></textarea>
+                <div class="flex items-center gap-2">
+                    <button type="submit" class="flex-1 py-2.5 rounded-xl bg-navy-950 text-amber-200 font-bold text-xs">Connect Cloud</button>
+                    <button type="button" onclick="resetCustomFirebaseConfig()" class="px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs">Use Default</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 border-t border-slate-800 text-slate-400 text-xs py-5 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <p>© 2026 <strong class="text-amber-300">Real Bath Fittings</strong>. Official Plumber Partner & Loyalty Portal.</p>
+            <p>Partner Helpline: <strong class="text-white">1800-120-4589</strong> • Mon–Sat, 9 AM – 7 PM</p>
+        </div>
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- APPLICATION SCRIPT                                                    -->
+    <!-- ===================================================================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, updateDoc, deleteDoc, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const I18N = {
+            en: {
+                tagline: "Strength. Style. Perfection. — Plumber Partner Portal",
+                companyAdmin: "Company Admin",
+                logout: "Logout",
+                loginHeading: "Plumber Partner Login",
+                loginSub: "Enter your Plumber ID or Mobile Number & Password",
+                plumberIdLabel: "Plumber ID or Mobile Number",
+                loginBtn: "Login to Partner Portal"
+            },
+            hi: {
+                tagline: "मजबूती, स्टाइल और परफेक्शन — प्लंबर पार्टनर पोर्टल",
+                companyAdmin: "कंपनी एडमिन",
+                logout: "लॉग आउट",
+                loginHeading: "प्लंबर पार्टनर लॉगिन",
+                loginSub: "अपना प्लंबर आईडी या मोबाइल नंबर और पासवर्ड दर्ज करें",
+                plumberIdLabel: "प्लंबर आईडी या मोबाइल नंबर",
+                loginBtn: "पार्टनर पोर्टल में लॉगिन करें"
+            }
+        };
+
+        const ADMIN_ACCOUNTS = [
+            { id: "RBF-ADMIN", password: "admin1234", name: "Head Office Admin" },
+            { id: "ADMIN", password: "admin1234", name: "Master Admin" }
+        ];
+
+        const DEFAULT_PLUMBERS = [
+            { id: "RBF-PLB-1042", password: "real1234", name: "Rajesh Kumar", mobile: "9822010420", city: "Pune, Maharashtra", dealer: "Shree Ganesh Sanitaryware", tier: "Gold Partner", points: 4850, earnings: 14200, completedModules: ["m1", "m2"] },
+            { id: "RBF-PLB-1088", password: "real1234", name: "Amitabh Singh", mobile: "9811010880", city: "Lucknow, UP", dealer: "Modern Bath Studio", tier: "Silver Partner", points: 2350, earnings: 6500, completedModules: ["m1"] },
+            { id: "RBF-PLB-1105", password: "real1234", name: "Prakash Patel", mobile: "9825011050", city: "Ahmedabad, Gujarat", dealer: "Royal Tiles & Fittings", tier: "Platinum Partner", points: 8900, earnings: 28400, completedModules: ["m1", "m2", "m3"] }
+        ];
+
+        const DEFAULT_SCHEMES = [
+            { id: "SCH-101", title: "Monsoon Cistern Dhamaka", product: "COMPAQ Concealed Cisterns", pointsPerUnit: 500, validUntil: "31 Dec 2026", desc: "Earn 500 Points (₹500 value) on every concealed cistern installed + ₹1,000 bonus on 5 units." },
+            { id: "SCH-102", title: "Kitchen Sink Pro Bonanza", product: "SS-304 Handmade Quartz & Steel Sinks", pointsPerUnit: 400, validUntil: "30 Nov 2026", desc: "Flat 400 Points per sink installation + free coupling kit for your customer." },
+            { id: "SCH-103", title: "Luxury Rain Shower Fest", product: "Thermostatic Diverters & Overhead Showers", pointsPerUnit: 750, validUntil: "15 Jan 2027", desc: "Highest loyalty reward on luxury bathroom combo fittings." }
+        ];
+
+        const DEFAULT_CUSTOMER_SCHEMES = [
+            { id: "CSCH-1", badge: "BESTSELLER COMBO", title: "Complete Bathroom Makeover Offer", offer: "Flat 18% OFF + Free Health Faucet", desc: "Applicable on purchase of Concealed Cistern + Wall Hung WC + Basin Mixer.", pitch: "Namaste! Real Bath Fittings ke Complete Bathroom Combo par abhi 18% discount aur ek Health Faucet bilkul FREE mil raha hai with 10-Year Warranty!" },
+            { id: "CSCH-2", badge: "10-YEAR WARRANTY", title: "Zero-Leakage Kitchen Sink Upgrade", offer: "Free Sound-Deadening Pad + Waste Coupling", desc: "Upgrade to 1.2mm thick SS-304 anti-scratch kitchen sinks with official doorstep warranty.", pitch: "Namaste! Apne kitchen ke liye Real Bath Fittings ka SS-304 Handmade Sink lagwayein — 10 saal ki warranty aur free waste coupling ke saath!" }
+        ];
+
+        const PRODUCT_CATALOG = [
+            { id: "P1", category: "Cisterns", name: "COMPAQ Slim Concealed Cistern", code: "RBF-CS-901", mrp: "₹6,450", warranty: "10 Years", plumberPts: 500 },
+            { id: "P2", category: "Cisterns", name: "Dual-Flush Wall Hung Tank Frame", code: "RBF-CS-904", mrp: "₹8,900", warranty: "10 Years", plumberPts: 500 },
+            { id: "P3", category: "Sinks", name: "SS-304 Nano Black Single Bowl Sink", code: "RBF-SK-304", mrp: "₹9,200", warranty: "10 Years", plumberPts: 400 },
+            { id: "P4", category: "Sinks", name: "Quartz Matte Grey Double Sink", code: "RBF-SK-412", mrp: "₹12,500", warranty: "10 Years", plumberPts: 400 },
+            { id: "P5", category: "Faucets", name: "3-Inlet Thermostatic Shower Diverter", code: "RBF-FC-701", mrp: "₹7,800", warranty: "10 Years", plumberPts: 750 },
+            { id: "P6", category: "Faucets", name: "Cascade Tall Boy Basin Mixer", code: "RBF-FC-515", mrp: "₹4,150", warranty: "7 Years", plumberPts: 300 }
+        ];
+
+        const REWARDS_CATALOG = [
+            { id: "R1", title: "Instant ₹500 UPI Cash", desc: "Direct bank transfer via UPI within 2 hours", cost: 500, icon: "fa-indian-rupee-sign", inputLabel: "Enter UPI ID (e.g. name@okicici)" },
+            { id: "R2", title: "Instant ₹2,000 UPI Cash", desc: "Fast-track partner payout to your bank", cost: 2000, icon: "fa-wallet", inputLabel: "Enter UPI ID (e.g. name@paytm)" },
+            { id: "R3", title: "Pro Waterproof Plumber Bag", desc: "Heavy-duty 24-pocket Real Bath Fittings toolkit", cost: 1500, icon: "fa-toolbox", inputLabel: "Confirm Delivery Address & Pincode" },
+            { id: "R4", title: "Heavy-Duty Pipe Wrench & Cutter Set", desc: "Chrome-vanadium professional pipe fitting kit", cost: 2500, icon: "fa-wrench", inputLabel: "Confirm Delivery Address & Pincode" }
+        ];
+
+        const TRAINING_MODULES = [
+            { id: "m1", title: "COMPAQ Concealed Cistern Alignment", duration: "3 Min Guide", pts: 100, steps: ["Verify finished floor level (FFL) marking at 1000mm height.", "Flush inlet supply line thoroughly before connecting angle valve.", "Pressure-test tank joints at 4 bar before tiling enclosure."] },
+            { id: "m2", title: "Thermostatic Diverter Cartridge Care", duration: "4 Min Guide", pts: 100, steps: ["Ensure hot inlet is on left and cold inlet is on right.", "Install inline mesh filters to block sand & debris.", "Calibrate temperature stop ring to 38°C safety mark."] },
+            { id: "m3", title: "SS-304 Undermount Sink Sealing", duration: "3 Min Guide", pts: 100, steps: ["Apply neutral-cure silicone bead evenly along countertop rim.", "Tighten undermount clips in cross-diagonal sequence.", "Attach sound-deadening pads and test overflow drain seal."] }
+        ];
+
+        const DEFAULT_CLAIMS = [
+            { id: "CLM-901", plumberId: "RBF-PLB-1042", plumberName: "Rajesh Kumar", schemeId: "SCH-101", schemeTitle: "Monsoon Cistern Dhamaka", qty: 2, code: "RBF-QR-7741", customer: "Mr. Deshmukh - Baner", points: 1000, status: "Pending", date: "Today, 09:40 AM", photoUrl: "" },
+            { id: "CLM-894", plumberId: "RBF-PLB-1042", plumberName: "Rajesh Kumar", schemeId: "SCH-102", schemeTitle: "Kitchen Sink Pro Bonanza", qty: 1, code: "RBF-INV-4410", customer: "Mrs. Joshi - Kothrud", points: 400, status: "Approved", date: "12 Nov 2026", photoUrl: "" }
+        ];
+
+        const DEFAULT_REQUESTS = [
+            { id: "REQ-501", name: "Suresh Jadhav", mobile: "9890123456", city: "Nashik, Maharashtra", dealer: "Om Sanitary House", date: "Today" }
+        ];
+
+        const STORAGE_KEY = "rbf_partner_portal_state_v2";
+        const CUSTOM_FB_STORAGE_KEY = "rbf_custom_firebase_config_v1";
+        const REMEMBER_PLUMBER_ID_KEY = "rbf_saved_plumber_id";
+        const REMEMBER_PLUMBER_PASS_KEY = "rbf_saved_plumber_pass";
+
+        const DEFAULT_FIREBASE_CONFIG = {
+            apiKey: "AIzaSyABuImvbpSqZw5TWooiy3OvTDqi6hA9-xs",
+            authDomain: "realbath-b6b12.firebaseapp.com",
+            projectId: "realbath-b6b12",
+            storageBucket: "realbath-b6b12.firebasestorage.app",
+            messagingSenderId: "24636971729",
+            appId: "1:24636971729:web:1b4f1097194f7db9e543f0"
+        };
+
+        let db = null;
+        let auth = null;
+        let appId = typeof __app_id !== "undefined" ? __app_id : "real-bath-b6b12";
+        let isCloudConnected = false;
+
+        let currentLang = "en";
+        let loginRoleMode = "plumber";
+        let currentPlumberId = null;
+        let currentAdmin = null;
+        let selectedReward = null;
+        let activeTrainingId = null;
+        let pendingClaimPhotoDataUrl = "";
+        let activeCatalogCategory = "All";
+
+        function loadLocalState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    return {
+                        plumbers: parsed.plumbers?.length ? parsed.plumbers : structuredClone(DEFAULT_PLUMBERS),
+                        schemes: parsed.schemes?.length ? parsed.schemes : structuredClone(DEFAULT_SCHEMES),
+                        customerSchemes: structuredClone(DEFAULT_CUSTOMER_SCHEMES),
+                        claims: Array.isArray(parsed.claims) ? parsed.claims : structuredClone(DEFAULT_CLAIMS),
+                        requests: Array.isArray(parsed.requests) ? parsed.requests : structuredClone(DEFAULT_REQUESTS)
+                    };
+                }
+            } catch (e) {
+                console.warn("Local storage read failed:", e);
+            }
+            return {
+                plumbers: structuredClone(DEFAULT_PLUMBERS),
+                schemes: structuredClone(DEFAULT_SCHEMES),
+                customerSchemes: structuredClone(DEFAULT_CUSTOMER_SCHEMES),
+                claims: structuredClone(DEFAULT_CLAIMS),
+                requests: structuredClone(DEFAULT_REQUESTS)
+            };
+        }
+
+        let appState = loadLocalState();
+
+        function saveLocalState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    plumbers: appState.plumbers,
+                    schemes: appState.schemes,
+                    claims: appState.claims,
+                    requests: appState.requests
+                }));
+            } catch (e) {
+                console.warn("Local storage write failed:", e);
+            }
+        }
+
+        function setSyncStatus(mode, text) {
+            const dot = document.getElementById("cloud-sync-dot");
+            const label = document.getElementById("cloud-sync-text");
+            if (!dot || !label) return;
+            label.textContent = text;
+            dot.className = "w-2 h-2 rounded-full " + (
+                mode === "cloud" ? "bg-emerald-400" :
+                mode === "local" ? "bg-sky-400" :
+                "bg-amber-400 animate-pulse"
+            );
+        }
+
+        function getActiveFirebaseConfig() {
+            try {
+                const saved = localStorage.getItem(CUSTOM_FB_STORAGE_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (parsed && parsed.apiKey) return parsed;
+                }
+            } catch (e) {
+                console.warn("Saved Firebase config invalid:", e);
+            }
+            if (typeof __firebase_config !== "undefined" && __firebase_config) {
+                try {
+                    const envCfg = typeof __firebase_config === "string" ? JSON.parse(__firebase_config) : __firebase_config;
+                    if (envCfg && envCfg.apiKey) return envCfg;
+                } catch (e) {
+                    console.warn("Env Firebase config invalid:", e);
+                }
+            }
+            return DEFAULT_FIREBASE_CONFIG;
+        }
+
+        async function initFirebaseBackend() {
+            const firebaseConfig = getActiveFirebaseConfig();
+            if (!firebaseConfig || !firebaseConfig.apiKey) {
+                setSyncStatus("local", "Ready (Local Sync)");
+                return;
+            }
+
+            setSyncStatus("connecting", "Connecting Cloud...");
+
+            try {
+                const fbApp = initializeApp(firebaseConfig, "rbf-portal-" + Date.now());
+                auth = getAuth(fbApp);
+                db = getFirestore(fbApp);
+
+                try {
+                    if (typeof __initial_auth_token !== "undefined" && __initial_auth_token && !localStorage.getItem(CUSTOM_FB_STORAGE_KEY)) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                } catch (authErr) {
+                    console.info("Proceeding directly with Firestore connection:", authErr?.code || authErr);
+                }
+
+                const plumbersCol = collection(db, "artifacts", appId, "public", "data", "rbf_plumbers");
+                const schemesCol = collection(db, "artifacts", appId, "public", "data", "rbf_schemes");
+                const claimsCol = collection(db, "artifacts", appId, "public", "data", "rbf_claims");
+                const requestsCol = collection(db, "artifacts", appId, "public", "data", "rbf_requests");
+
+                onSnapshot(plumbersCol, async (snap) => {
+                    isCloudConnected = true;
+                    setSyncStatus("cloud", `Cloud Live (${firebaseConfig.projectId})`);
+                    if (snap.empty) {
+                        for (const p of DEFAULT_PLUMBERS) {
+                            await setDoc(doc(plumbersCol, p.id), p);
+                        }
+                    } else {
+                        appState.plumbers = snap.docs.map(d => d.data());
+                        saveLocalState();
+                        refreshActiveViews();
+                    }
+                }, (err) => {
+                    isCloudConnected = false;
+                    setSyncStatus("local", "Local Mode (Check Rules)");
+                    console.warn("Firestore rules check needed:", err);
+                });
+
+                onSnapshot(schemesCol, async (snap) => {
+                    if (snap.empty) {
+                        for (const s of DEFAULT_SCHEMES) {
+                            await setDoc(doc(schemesCol, s.id), s);
+                        }
+                    } else {
+                        appState.schemes = snap.docs.map(d => d.data());
+                        saveLocalState();
+                        refreshActiveViews();
+                    }
+                }, (err) => console.warn("Schemes listener fallback:", err));
+
+                onSnapshot(claimsCol, async (snap) => {
+                    if (snap.empty) {
+                        for (const c of DEFAULT_CLAIMS) {
+                            await setDoc(doc(claimsCol, c.id), c);
+                        }
+                    } else {
+                        appState.claims = snap.docs.map(d => d.data());
+                        saveLocalState();
+                        refreshActiveViews();
+                    }
+                }, (err) => console.warn("Claims listener fallback:", err));
+
+                onSnapshot(requestsCol, async (snap) => {
+                    if (!snap.empty) {
+                        appState.requests = snap.docs.map(d => d.data());
+                        saveLocalState();
+                        refreshActiveViews();
+                    }
+                }, (err) => console.warn("Requests listener fallback:", err));
+            } catch (err) {
+                isCloudConnected = false;
+                console.warn("Firebase connection error:", err);
+                setSyncStatus("local", "Ready (Local Sync)");
+            }
+        }
+
+        async function persistRecord(colName, docId, data) {
+            saveLocalState();
+            if (isCloudConnected && db) {
+                try {
+                    await setDoc(doc(db, "artifacts", appId, "public", "data", colName, docId), data);
+                } catch (e) {
+                    console.warn("Cloud write error:", e);
+                }
+            }
+        }
+
+        async function updateRecord(colName, docId, patch) {
+            saveLocalState();
+            if (isCloudConnected && db) {
+                try {
+                    await updateDoc(doc(db, "artifacts", appId, "public", "data", colName, docId), patch);
+                } catch (e) {
+                    console.warn("Cloud update error:", e);
+                }
+            }
+        }
+
+        async function deleteRecord(colName, docId) {
+            saveLocalState();
+            if (isCloudConnected && db) {
+                try {
+                    await deleteDoc(doc(db, "artifacts", appId, "public", "data", colName, docId));
+                } catch (e) {
+                    console.warn("Cloud delete error:", e);
+                }
+            }
+        }
+
+        window.showToast = function(message, type = "info") {
+            const container = document.getElementById("toast-container");
+            if (!container) return;
+            const toast = document.createElement("div");
+            const colors = type === "success" ? "bg-emerald-900 border-emerald-500 text-emerald-50" :
+                           type === "error" ? "bg-rose-950 border-rose-500 text-rose-50" :
+                           "bg-navy-950 border-amber-500/60 text-amber-100";
+            const icon = type === "success" ? "fa-circle-check text-emerald-400" :
+                         type === "error" ? "fa-circle-exclamation text-rose-400" :
+                         "fa-circle-info text-amber-400";
+            toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl border shadow-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${colors}`;
+            toast.innerHTML = `<i class="fa-solid ${icon} text-base shrink-0"></i><span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                setTimeout(() => toast.remove(), 300);
+            }, 3800);
+        };
+
+        window.openModal = function(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.remove("hidden");
+        };
+
+        window.closeModal = function(id) {
+            const el = document.getElementById(id);
+            if (el) el.classList.add("hidden");
+        };
+
+        window.copyTextToClipboard = function(text, successMsg = "Copied to clipboard!") {
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand("copy");
+                showToast(successMsg, "success");
+            } catch (e) {
+                showToast("Copy failed", "error");
+            }
+            document.body.removeChild(textarea);
+        };
+
+        window.toggleLanguage = function() {
+            currentLang = currentLang === "en" ? "hi" : "en";
+            const dict = I18N[currentLang];
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (dict[key]) el.textContent = dict[key];
+            });
+            const btnText = document.getElementById("lang-btn-text");
+            if (btnText) btnText.textContent = currentLang === "en" ? "हिंदी / Hinglish" : "English";
+            showToast(currentLang === "hi" ? "भाषा हिंदी / Hinglish में बदली गई" : "Language switched to English", "info");
+        };
+
+        window.openCloudSetupModal = function() {
+            const statusEl = document.getElementById("fb-setup-status");
+            const inputEl = document.getElementById("fb-config-input");
+            const saved = localStorage.getItem(CUSTOM_FB_STORAGE_KEY) || "";
+            if (inputEl) inputEl.value = saved;
+            if (statusEl) {
+                statusEl.innerHTML = isCloudConnected
+                    ? `<span class="text-emerald-700"><i class="fa-solid fa-circle-check mr-1"></i>Connected to Firebase Cloud Firestore (Real-time multi-device sync active).</span>`
+                    : `<span class="text-amber-700"><i class="fa-solid fa-circle-info mr-1"></i>Connecting to <strong>realbath-b6b12</strong>. Make sure Firestore Rules allow read/write access.</span>`;
+            }
+            openModal("cloud-setup-modal");
+        };
+
+        window.saveCustomFirebaseConfig = function(e) {
+            e.preventDefault();
+            const raw = document.getElementById("fb-config-input").value.trim();
+            if (!raw) {
+                closeModal("cloud-setup-modal");
+                initFirebaseBackend();
+                return;
+            }
+            try {
+                const withoutComments = raw.replace(/\/\/.*$/gm, "");
+                const startIdx = withoutComments.indexOf("{");
+                const endIdx = withoutComments.lastIndexOf("}");
+                if (startIdx === -1 || endIdx === -1 || endIdx <= startIdx) {
+                    showToast("Could not find { ... } config object.", "error");
+                    return;
+                }
+                const objSnippet = withoutComments.slice(startIdx, endIdx + 1);
+                const jsonNormalized = objSnippet
+                    .replace(/,\s*}/g, "}")
+                    .replace(/([{,]\s*)([a-zA-Z0-9_]+)\s*:/g, '$1"$2":')
+                    .replace(/'/g, '"');
+                const parsed = JSON.parse(jsonNormalized);
+                if (!parsed.apiKey || !parsed.projectId) {
+                    showToast("Config must include both apiKey and projectId.", "error");
+                    return;
+                }
+                localStorage.setItem(CUSTOM_FB_STORAGE_KEY, JSON.stringify(parsed, null, 2));
+                closeModal("cloud-setup-modal");
+                showToast(`Connecting to ${parsed.projectId}...`, "info");
+                initFirebaseBackend();
+            } catch (err) {
+                showToast("Could not read config. Make sure apiKey, authDomain, projectId & appId are included.", "error");
+            }
+        };
+
+        window.resetCustomFirebaseConfig = function() {
+            localStorage.removeItem(CUSTOM_FB_STORAGE_KEY);
+            const inputEl = document.getElementById("fb-config-input");
+            if (inputEl) inputEl.value = "";
+            closeModal("cloud-setup-modal");
+            showToast("Using built-in realbath-b6b12 Firebase config.", "info");
+            initFirebaseBackend();
+        };
+
+        function renderQuickPlumberChips() {
+            const container = document.getElementById("quick-plumber-chips");
+            if (!container) return;
+            container.innerHTML = appState.plumbers.slice(0, 3).map(p => `
+                <button type="button" onclick="quickLoginPlumber('${p.id}')" class="p-2 rounded-xl border border-slate-200 hover:border-amber-400 hover:bg-amber-50/60 text-left transition">
+                    <p class="text-xs font-extrabold text-slate-900 truncate">${p.name.split(" ")[0]}</p>
+                    <p class="text-[10px] font-mono text-slate-500 truncate">${p.id}</p>
+                </button>
+            `).join("");
+        }
+
+        window.switchLoginRole = function(role) {
+            loginRoleMode = role;
+            const pTab = document.getElementById("role-tab-plumber");
+            const aTab = document.getElementById("role-tab-admin");
+            const title = document.getElementById("login-card-title");
+            const sub = document.getElementById("login-card-subtitle");
+            const idLabel = document.getElementById("login-id-label");
+            const idInput = document.getElementById("login-id-input");
+            const passInput = document.getElementById("login-pass-input");
+            const hint = document.getElementById("login-demo-hint");
+            const submitText = document.getElementById("login-submit-text");
+            const extras = document.getElementById("plumber-login-extras");
+            const quickSec = document.getElementById("quick-plumber-section");
+            const adminBox = document.getElementById("admin-login-hint-box");
+
+            if (role === "admin") {
+                pTab.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition";
+                aTab.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold bg-navy-950 text-amber-200 shadow transition";
+                title.textContent = "Company Admin Login";
+                sub.textContent = "Authorized Real Bath Fittings Head Office Staff Only";
+                idLabel.textContent = "Admin ID";
+                idInput.value = "";
+                passInput.value = "";
+                hint.textContent = "";
+                submitText.textContent = "Open Admin Console";
+                extras.classList.add("hidden");
+                quickSec.classList.add("hidden");
+                adminBox.classList.remove("hidden");
+            } else {
+                aTab.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition";
+                pTab.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold bg-navy-950 text-white shadow transition";
+                title.textContent = I18N[currentLang].loginHeading;
+                sub.textContent = I18N[currentLang].loginSub;
+                idLabel.textContent = I18N[currentLang].plumberIdLabel;
+
+                const savedId = localStorage.getItem(REMEMBER_PLUMBER_ID_KEY) || "";
+                const savedPass = localStorage.getItem(REMEMBER_PLUMBER_PASS_KEY) || "";
+                idInput.value = savedId;
+                passInput.value = savedPass;
+                hint.textContent = "";
+                submitText.textContent = I18N[currentLang].loginBtn;
+                extras.classList.remove("hidden");
+                quickSec.classList.remove("hidden");
+                adminBox.classList.add("hidden");
+            }
+        };
+
+        window.openAdminDirect = function() {
+            currentPlumberId = null;
+            document.getElementById("portal-view").classList.add("hidden");
+            document.getElementById("admin-view").classList.add("hidden");
+            document.getElementById("auth-view").classList.remove("hidden");
+            document.getElementById("logout-btn").classList.add("hidden");
+            switchLoginRole("admin");
+            document.getElementById("login-id-input").focus();
+        };
+
+        window.togglePasswordVisibility = function() {
+            const input = document.getElementById("login-pass-input");
+            const icon = document.getElementById("pass-eye-icon");
+            if (input.type === "password") {
+                input.type = "text";
+                icon.className = "fa-solid fa-eye-slash";
+            } else {
+                input.type = "password";
+                icon.className = "fa-solid fa-eye";
+            }
+        };
+
+        window.forgotPasswordHelper = function() {
+            showToast("WhatsApp Password Recovery sent to your registered mobile number.", "info");
+        };
+
+        window.quickLoginPlumber = function(plumberId) {
+            const plumber = appState.plumbers.find(p => p.id === plumberId);
+            if (!plumber) return;
+            enterPlumberPortal(plumber);
+        };
+
+        window.handleLogin = function(e) {
+            e.preventDefault();
+            const rawId = document.getElementById("login-id-input").value.trim();
+            const pass = document.getElementById("login-pass-input").value.trim();
+
+            if (loginRoleMode === "admin") {
+                const admin = ADMIN_ACCOUNTS.find(a => a.id.toLowerCase() === rawId.toLowerCase() && a.password === pass);
+                if (!admin) {
+                    showToast("Invalid Admin ID or Password.", "error");
+                    return;
+                }
+                enterAdminPortal(admin);
+                return;
+            }
+
+            const cleanedMobile = rawId.replace(/\D/g, "");
+            const plumber = appState.plumbers.find(p =>
+                (p.id.toLowerCase() === rawId.toLowerCase() || (cleanedMobile.length >= 10 && p.mobile.endsWith(cleanedMobile.slice(-10)))) &&
+                p.password === pass
+            );
+
+            if (!plumber) {
+                showToast("Invalid Plumber ID/Mobile or Password.", "error");
+                return;
+            }
+
+            if (document.getElementById("remember-me-checkbox")?.checked) {
+                localStorage.setItem(REMEMBER_PLUMBER_ID_KEY, plumber.id);
+                localStorage.setItem(REMEMBER_PLUMBER_PASS_KEY, plumber.password);
+            } else {
+                localStorage.removeItem(REMEMBER_PLUMBER_ID_KEY);
+                localStorage.removeItem(REMEMBER_PLUMBER_PASS_KEY);
+            }
+
+            enterPlumberPortal(plumber);
+        };
+
+        function enterPlumberPortal(plumber) {
+            currentPlumberId = plumber.id;
+            currentAdmin = null;
+            document.getElementById("auth-view").classList.add("hidden");
+            document.getElementById("admin-view").classList.add("hidden");
+            document.getElementById("portal-view").classList.remove("hidden");
+            document.getElementById("logout-btn").classList.remove("hidden");
+            document.getElementById("logout-btn").classList.add("flex");
+            renderPlumberPortal();
+            showToast(`Welcome back, ${plumber.name}!`, "success");
+        }
+
+        function enterAdminPortal(admin) {
+            currentAdmin = admin;
+            currentPlumberId = null;
+            document.getElementById("auth-view").classList.add("hidden");
+            document.getElementById("portal-view").classList.add("hidden");
+            document.getElementById("admin-view").classList.remove("hidden");
+            document.getElementById("logout-btn").classList.remove("hidden");
+            document.getElementById("logout-btn").classList.add("flex");
+            renderAdminPanel();
+            showToast(`Logged in as ${admin.name}`, "success");
+        }
+
+        window.handleLogout = function() {
+            currentPlumberId = null;
+            currentAdmin = null;
+            document.getElementById("portal-view").classList.add("hidden");
+            document.getElementById("admin-view").classList.add("hidden");
+            document.getElementById("auth-view").classList.remove("hidden");
+            document.getElementById("logout-btn").classList.add("hidden");
+            document.getElementById("logout-btn").classList.remove("flex");
+
+            const savedId = localStorage.getItem(REMEMBER_PLUMBER_ID_KEY) || "";
+            const savedPass = localStorage.getItem(REMEMBER_PLUMBER_PASS_KEY) || "";
+            document.getElementById("login-id-input").value = savedId;
+            document.getElementById("login-pass-input").value = savedPass;
+
+            showToast("Logged out safely.", "info");
+        };
+
+        function getCurrentPlumber() {
+            return appState.plumbers.find(p => p.id === currentPlumberId) || appState.plumbers[0];
+        }
+
+        function refreshActiveViews() {
+            renderQuickPlumberChips();
+            if (currentPlumberId) renderPlumberPortal();
+            if (currentAdmin) renderAdminPanel();
+        }
+
+        function renderPlumberPortal() {
+            const p = getCurrentPlumber();
+            if (!p) return;
+
+            document.getElementById("portal-plumber-tier").textContent = p.tier || "Gold Partner";
+            document.getElementById("portal-plumber-id").textContent = p.id;
+            document.getElementById("portal-plumber-name").textContent = p.name;
+            document.getElementById("portal-plumber-city").textContent = p.city;
+            document.getElementById("portal-plumber-dealer").textContent = p.dealer;
+            document.getElementById("portal-points-val").textContent = Number(p.points || 0).toLocaleString();
+            document.getElementById("portal-earnings-val").textContent = "₹" + Number(p.earnings || 0).toLocaleString();
+            document.getElementById("referral-code-display").textContent = "REF-" + p.id;
+
+            renderRewardsGrid(p);
+            renderActivityFeed(p);
+            renderPlumberSchemes();
+            renderCustomerSchemes();
+            renderProductCatalog();
+            renderTrainingModules(p);
+        }
+
+        window.switchPortalTab = function(tabName) {
+            document.querySelectorAll(".portal-tab-view").forEach(v => v.classList.add("hidden"));
+            document.querySelectorAll(".portal-tab-btn").forEach(b => {
+                b.className = "portal-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:bg-slate-200/70 whitespace-nowrap transition";
+            });
+            const view = document.getElementById(`pview-${tabName}`);
+            const btn = document.getElementById(`ptab-${tabName}`);
+            if (view) view.classList.remove("hidden");
+            if (btn) btn.className = "portal-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-navy-950 text-amber-200 whitespace-nowrap transition";
+        };
+
+        function renderRewardsGrid(plumber) {
+            const grid = document.getElementById("rewards-grid");
+            if (!grid) return;
+            grid.innerHTML = REWARDS_CATALOG.map(r => {
+                const canAfford = plumber.points >= r.cost;
+                return `
+                    <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between gap-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-base">
+                                    <i class="fa-solid ${r.icon}"></i>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-slate-100 text-slate-800">${r.cost} Pts</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 text-sm">${r.title}</h4>
+                            <p class="text-xs text-slate-500 mt-1">${r.desc}</p>
+                        </div>
+                        <button onclick="openRedeemModal('${r.id}')" ${canAfford ? "" : "disabled"} class="w-full py-2.5 rounded-xl text-xs font-bold transition ${canAfford ? "bg-navy-950 hover:bg-navy-800 text-amber-200" : "bg-slate-100 text-slate-400 cursor-not-allowed"}">
+                            ${canAfford ? "Redeem Now" : `Need ${r.cost - plumber.points} More Pts`}
+                        </button>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function renderActivityFeed(plumber) {
+            const feed = document.getElementById("activity-feed");
+            if (!feed) return;
+            const myClaims = appState.claims.filter(c => c.plumberId === plumber.id);
+            if (!myClaims.length) {
+                feed.innerHTML = `<div class="bg-white rounded-2xl p-6 border border-slate-200 text-center text-xs text-slate-500">No installations logged yet. Click <strong>Log Installation</strong> to claim points!</div>`;
+                return;
+            }
+            feed.innerHTML = myClaims.map(c => {
+                const badgeClass = c.status === "Approved" ? "bg-emerald-100 text-emerald-800" :
+                                   c.status === "Rejected" ? "bg-rose-100 text-rose-800" :
+                                   "bg-amber-100 text-amber-800";
+                const photoThumb = c.photoUrl ? `
+                    <button type="button" onclick="openPhotoViewer('${c.id}')" class="mt-2 inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-[11px] font-bold text-slate-700">
+                        <img src="${c.photoUrl}" class="w-6 h-6 rounded object-cover" alt="Site photo">
+                        <span>View Site Photo</span>
+                    </button>
+                ` : "";
+                return `
+                    <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-start justify-between gap-3">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-sm text-slate-900">${c.schemeTitle}</span>
+                                <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold ${badgeClass}">${c.status}</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-1">Qty: <strong>${c.qty}</strong> • Code: <span class="font-mono">${c.code}</span> • ${c.customer}</p>
+                            <p class="text-[11px] text-slate-400 mt-0.5">${c.date}</p>
+                            ${photoThumb}
+                        </div>
+                        <span class="font-extrabold text-sm text-emerald-700 whitespace-nowrap">+${c.points} Pts</span>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function renderPlumberSchemes() {
+            const grid = document.getElementById("plumber-schemes-grid");
+            if (!grid) return;
+            grid.innerHTML = appState.schemes.map(s => `
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between gap-4">
+                    <div class="space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-full text-[11px] font-extrabold bg-amber-100 text-amber-800">+${s.pointsPerUnit} Pts / Unit</span>
+                            <span class="text-[11px] text-slate-400">Valid: ${s.validUntil}</span>
+                        </div>
+                        <h4 class="text-lg font-extrabold text-slate-900">${s.title}</h4>
+                        <p class="text-xs font-bold text-sanitary-700">${s.product}</p>
+                        <p class="text-xs text-slate-600 leading-relaxed">${s.desc}</p>
+                    </div>
+                    <button onclick="openClaimModal('${s.id}')" class="w-full py-3 rounded-xl bg-navy-950 hover:bg-navy-800 text-amber-200 font-bold text-xs transition">
+                        Log Installation Under Scheme
+                    </button>
+                </div>
+            `).join("");
+        }
+
+        function renderCustomerSchemes() {
+            const grid = document.getElementById("customer-schemes-grid");
+            if (!grid) return;
+            grid.innerHTML = appState.customerSchemes.map(cs => `
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] font-extrabold bg-sanitary-100 text-sanitary-700">${cs.badge}</span>
+                    <h4 class="text-lg font-extrabold text-slate-900">${cs.title}</h4>
+                    <p class="text-sm font-extrabold text-amber-700">${cs.offer}</p>
+                    <p class="text-xs text-slate-600">${cs.desc}</p>
+                    <button onclick='copyTextToClipboard(${JSON.stringify(cs.pitch)}, "Customer WhatsApp pitch copied!")' class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 transition">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Copy WhatsApp Pitch for Customer</span>
+                    </button>
+                </div>
+            `).join("");
+        }
+
+        window.filterCatalog = function(cat) {
+            activeCatalogCategory = cat;
+            document.querySelectorAll(".cat-filter-btn").forEach(b => {
+                b.className = b.textContent.trim() === cat
+                    ? "cat-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-navy-950 text-white"
+                    : "cat-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-200 text-slate-700";
+            });
+            renderProductCatalog();
+        };
+
+        function renderProductCatalog() {
+            const grid = document.getElementById("product-catalog-grid");
+            if (!grid) return;
+            const items = activeCatalogCategory === "All"
+                ? PRODUCT_CATALOG
+                : PRODUCT_CATALOG.filter(i => i.category === activeCatalogCategory);
+            grid.innerHTML = items.map(p => `
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-2">
+                    <div class="flex items-center justify-between text-[11px]">
+                        <span class="font-bold text-sanitary-700 uppercase">${p.category}</span>
+                        <span class="font-mono text-slate-400">${p.code}</span>
+                    </div>
+                    <h4 class="font-extrabold text-slate-900 text-sm">${p.name}</h4>
+                    <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+                        <span>MRP: <strong class="text-slate-900">${p.mrp}</strong></span>
+                        <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-bold">+${p.plumberPts} Pts</span>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function renderTrainingModules(plumber) {
+            const grid = document.getElementById("training-modules-grid");
+            if (!grid) return;
+            const doneList = plumber.completedModules || [];
+            grid.innerHTML = TRAINING_MODULES.map(m => {
+                const isDone = doneList.includes(m.id);
+                return `
+                    <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center justify-between gap-4">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h4 class="font-extrabold text-slate-900 text-sm">${m.title}</h4>
+                                ${isDone ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Completed</span>` : ""}
+                            </div>
+                            <p class="text-xs text-slate-500 mt-0.5">${m.duration} • Reward: +${m.pts} Points</p>
+                        </div>
+                        <button onclick="openTrainingModal('${m.id}')" class="px-3.5 py-2 rounded-xl text-xs font-bold shrink-0 ${isDone ? "bg-slate-100 text-slate-700" : "bg-navy-950 text-amber-200"}">
+                            ${isDone ? "Review" : "Start Guide"}
+                        </button>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        window.openClaimModal = function(preselectSchemeId = null) {
+            const select = document.getElementById("claim-scheme-select");
+            select.innerHTML = appState.schemes.map(s => `<option value="${s.id}">${s.title} (+${s.pointsPerUnit} Pts/unit)</option>`).join("");
+            if (preselectSchemeId) select.value = preselectSchemeId;
+            document.getElementById("claim-qty").value = 1;
+            document.getElementById("claim-code").value = "";
+            document.getElementById("claim-customer").value = "";
+            clearClaimPhoto();
+            updateClaimPreview();
+            openModal("claim-modal");
+        };
+
+        window.updateClaimPreview = function() {
+            const schId = document.getElementById("claim-scheme-select").value;
+            const qty = Math.max(1, parseInt(document.getElementById("claim-qty").value || "1", 10));
+            const scheme = appState.schemes.find(s => s.id === schId) || appState.schemes[0];
+            const total = (scheme ? scheme.pointsPerUnit : 500) * qty;
+            document.getElementById("claim-points-preview").textContent = `+${total.toLocaleString()} Points`;
+        };
+
+        window.handleClaimPhotoSelected = function(event) {
+            const file = event.target.files?.[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement("canvas");
+                    const maxDim = 640;
+                    let w = img.width;
+                    let h = img.height;
+                    if (w > maxDim || h > maxDim) {
+                        if (w > h) {
+                            h = Math.round((h * maxDim) / w);
+                            w = maxDim;
+                        } else {
+                            w = Math.round((w * maxDim) / h);
+                            h = maxDim;
+                        }
+                    }
+                    canvas.width = w;
+                    canvas.height = h;
+                    canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+
+                    let quality = 0.72;
+                    let dataUrl = canvas.toDataURL("image/jpeg", quality);
+                    while (dataUrl.length * 0.75 > 480 * 1024 && quality > 0.25) {
+                        quality -= 0.1;
+                        dataUrl = canvas.toDataURL("image/jpeg", quality);
+                    }
+                    pendingClaimPhotoDataUrl = dataUrl;
+
+                    document.getElementById("claim-photo-preview-img").src = pendingClaimPhotoDataUrl;
+                    document.getElementById("claim-photo-dropzone").classList.add("hidden");
+                    document.getElementById("claim-photo-preview-wrap").classList.remove("hidden");
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        };
+
+        window.clearClaimPhoto = function() {
+            pendingClaimPhotoDataUrl = "";
+            const input = document.getElementById("claim-photo-input");
+            if (input) input.value = "";
+            document.getElementById("claim-photo-dropzone")?.classList.remove("hidden");
+            document.getElementById("claim-photo-preview-wrap")?.classList.add("hidden");
+        };
+
+        window.submitInstallationClaim = async function(e) {
+            e.preventDefault();
+            const plumber = getCurrentPlumber();
+            const schId = document.getElementById("claim-scheme-select").value;
+            const scheme = appState.schemes.find(s => s.id === schId) || appState.schemes[0];
+            const qty = Math.max(1, parseInt(document.getElementById("claim-qty").value || "1", 10));
+            const code = document.getElementById("claim-code").value.trim().toUpperCase();
+            const customer = document.getElementById("claim-customer").value.trim();
+
+            const claim = {
+                id: "CLM-" + Math.floor(100 + Math.random() * 900),
+                plumberId: plumber.id,
+                plumberName: plumber.name,
+                schemeId: scheme.id,
+                schemeTitle: scheme.title,
+                qty,
+                code,
+                customer,
+                points: scheme.pointsPerUnit * qty,
+                status: "Pending",
+                date: "Just now",
+                photoUrl: pendingClaimPhotoDataUrl || ""
+            };
+
+            appState.claims.unshift(claim);
+            await persistRecord("rbf_claims", claim.id, claim);
+            closeModal("claim-modal");
+            renderPlumberPortal();
+            showToast("Installation claim & site photo submitted for Company Admin verification!", "success");
+        };
+
+        window.openPhotoViewer = function(claimId) {
+            const claim = appState.claims.find(c => c.id === claimId);
+            if (!claim || !claim.photoUrl) return;
+            document.getElementById("photo-viewer-caption").textContent = `${claim.plumberName} (${claim.plumberId}) — ${claim.schemeTitle} [${claim.code}]`;
+            document.getElementById("photo-viewer-img").src = claim.photoUrl;
+            openModal("photo-viewer-modal");
+        };
+
+        window.openRedeemModal = function(rewardId) {
+            selectedReward = REWARDS_CATALOG.find(r => r.id === rewardId);
+            if (!selectedReward) return;
+            document.getElementById("redeem-modal-title").textContent = `${selectedReward.title} (${selectedReward.cost} Pts)`;
+            document.getElementById("redeem-modal-desc").textContent = selectedReward.desc;
+            document.getElementById("redeem-input-label").textContent = selectedReward.inputLabel;
+            document.getElementById("redeem-destination-input").value = "";
+            openModal("redeem-modal");
+        };
+
+        window.confirmRedemption = async function(e) {
+            e.preventDefault();
+            const plumber = getCurrentPlumber();
+            if (!selectedReward || plumber.points < selectedReward.cost) return;
+            const dest = document.getElementById("redeem-destination-input").value.trim();
+            plumber.points -= selectedReward.cost;
+            if (selectedReward.title.includes("UPI")) {
+                plumber.earnings = (plumber.earnings || 0) + selectedReward.cost;
+            }
+            await updateRecord("rbf_plumbers", plumber.id, { points: plumber.points, earnings: plumber.earnings });
+            closeModal("redeem-modal");
+            renderPlumberPortal();
+            showToast(`Redeemed ${selectedReward.title} to ${dest}!`, "success");
+        };
+
+        window.openTrainingModal = function(moduleId) {
+            activeTrainingId = moduleId;
+            const mod = TRAINING_MODULES.find(m => m.id === moduleId);
+            const plumber = getCurrentPlumber();
+            if (!mod) return;
+            document.getElementById("training-modal-title").textContent = mod.title;
+            document.getElementById("training-steps-list").innerHTML = mod.steps.map(s => `<li>${s}</li>`).join("");
+            const isDone = (plumber.completedModules || []).includes(moduleId);
+            const btn = document.getElementById("complete-training-btn");
+            btn.disabled = isDone;
+            btn.textContent = isDone ? "Already Completed" : `Mark Completed & Claim +${mod.pts} Points`;
+            openModal("training-modal");
+        };
+
+        window.completeTrainingModule = async function() {
+            const plumber = getCurrentPlumber();
+            const mod = TRAINING_MODULES.find(m => m.id === activeTrainingId);
+            if (!mod) return;
+            plumber.completedModules = plumber.completedModules || [];
+            if (!plumber.completedModules.includes(mod.id)) {
+                plumber.completedModules.push(mod.id);
+                plumber.points += mod.pts;
+                await updateRecord("rbf_plumbers", plumber.id, {
+                    completedModules: plumber.completedModules,
+                    points: plumber.points
+                });
+                showToast(`+${mod.pts} Bonus Points credited for completing training!`, "success");
+            }
+            closeModal("training-modal");
+            renderPlumberPortal();
+        };
+
+        window.copyReferralCode = function() {
+            const p = getCurrentPlumber();
+            copyTextToClipboard(`Join Real Bath Fittings Partner Portal with my Referral Code REF-${p.id} and earn ₹500 bonus points!`, "Referral invite copied!");
+        };
+
+        window.submitIdRequest = async function(e) {
+            e.preventDefault();
+            const req = {
+                id: "REQ-" + Math.floor(100 + Math.random() * 900),
+                name: document.getElementById("req-name").value.trim(),
+                mobile: document.getElementById("req-mobile").value.trim(),
+                city: document.getElementById("req-city").value.trim(),
+                dealer: document.getElementById("req-dealer").value.trim(),
+                date: "Just now"
+            };
+            appState.requests.unshift(req);
+            await persistRecord("rbf_requests", req.id, req);
+            closeModal("request-id-modal");
+            showToast("Registration request sent! Company Admin will issue your Plumber ID shortly.", "success");
+        };
+
+        function renderAdminPanel() {
+            document.getElementById("admin-stat-plumbers").textContent = appState.plumbers.length;
+            document.getElementById("admin-stat-pending").textContent = appState.claims.filter(c => c.status === "Pending").length;
+            document.getElementById("admin-stat-requests").textContent = appState.requests.length;
+
+            const claimsList = document.getElementById("admin-claims-list");
+            claimsList.innerHTML = appState.claims.length ? appState.claims.map(c => {
+                const photoBtn = c.photoUrl ? `
+                    <button type="button" onclick="openPhotoViewer('${c.id}')" class="mt-2 inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-sanitary-50 hover:bg-sanitary-100 border border-sanitary-200 text-xs font-bold text-sanitary-800">
+                        <img src="${c.photoUrl}" class="w-7 h-7 rounded object-cover" alt="Proof">
+                        <span>Inspect Site Photo</span>
+                    </button>
+                ` : `<span class="inline-block mt-1 text-[11px] text-slate-400">No photo attached</span>`;
+
+                return `
+                    <div class="p-4 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-extrabold text-sm text-slate-900">${c.plumberName}</span>
+                                <span class="text-xs font-mono text-slate-500">(${c.plumberId})</span>
+                                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${c.status === "Approved" ? "bg-emerald-100 text-emerald-800" : c.status === "Rejected" ? "bg-rose-100 text-rose-800" : "bg-amber-100 text-amber-800"}">${c.status}</span>
+                            </div>
+                            <p class="text-xs text-slate-600 mt-1">${c.schemeTitle} • Qty: <strong>${c.qty}</strong> • Code: <span class="font-mono">${c.code}</span></p>
+                            <p class="text-xs text-slate-500">Site: ${c.customer} • Reward: <strong class="text-emerald-700">+${c.points} Pts</strong></p>
+                            ${photoBtn}
+                        </div>
+                        ${c.status === "Pending" ? `
+                            <div class="flex items-center gap-2 shrink-0">
+                                <button onclick="adminApproveClaim('${c.id}')" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">Approve</button>
+                                <button onclick="adminRejectClaim('${c.id}')" class="px-3 py-2 rounded-xl bg-rose-100 hover:bg-rose-200 text-rose-800 text-xs font-bold">Reject</button>
+                            </div>
+                        ` : ""}
+                    </div>
+                `;
+            }).join("") : `<p class="text-xs text-slate-500">No claims submitted yet.</p>`;
+
+            const reqList = document.getElementById("admin-requests-list");
+            reqList.innerHTML = appState.requests.length ? appState.requests.map(r => `
+                <div class="p-3.5 rounded-2xl border border-slate-200 flex items-center justify-between gap-3">
+                    <div>
+                        <p class="font-extrabold text-sm text-slate-900">${r.name} <span class="text-xs font-normal text-slate-500">(${r.mobile})</span></p>
+                        <p class="text-xs text-slate-500">${r.city} • Dealer: ${r.dealer}</p>
+                    </div>
+                    <button onclick="prefillPlumberFromRequest('${r.id}')" class="px-3 py-1.5 rounded-xl bg-navy-950 text-amber-200 text-xs font-bold shrink-0">Issue ID</button>
+                </div>
+            `).join("") : `<p class="text-xs text-slate-500">No pending registration requests.</p>`;
+
+            const plbList = document.getElementById("admin-plumbers-list");
+            plbList.innerHTML = appState.plumbers.map(p => `
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs">
+                    <div>
+                        <strong class="text-slate-900">${p.name}</strong> <span class="font-mono text-slate-500">(${p.id})</span>
+                        <p class="text-slate-500">${p.mobile} • ${p.city}</p>
+                    </div>
+                    <span class="font-extrabold text-amber-700">${Number(p.points || 0).toLocaleString()} Pts</span>
+                </div>
+            `).join("");
+        }
+
+        window.adminApproveClaim = async function(claimId) {
+            const claim = appState.claims.find(c => c.id === claimId);
+            if (!claim || claim.status !== "Pending") return;
+            claim.status = "Approved";
+            const plumber = appState.plumbers.find(p => p.id === claim.plumberId);
+            if (plumber) {
+                plumber.points = (plumber.points || 0) + claim.points;
+                await updateRecord("rbf_plumbers", plumber.id, { points: plumber.points });
+            }
+            await updateRecord("rbf_claims", claim.id, { status: "Approved" });
+            renderAdminPanel();
+            showToast(`Claim ${claim.id} approved! +${claim.points} Pts credited to ${claim.plumberName}.`, "success");
+        };
+
+        window.adminRejectClaim = async function(claimId) {
+            const claim = appState.claims.find(c => c.id === claimId);
+            if (!claim) return;
+            claim.status = "Rejected";
+            await updateRecord("rbf_claims", claim.id, { status: "Rejected" });
+            renderAdminPanel();
+            showToast(`Claim ${claim.id} marked as rejected.`, "info");
+        };
+
+        window.prefillPlumberFromRequest = async function(reqId) {
+            const req = appState.requests.find(r => r.id === reqId);
+            if (!req) return;
+            document.getElementById("adm-plb-name").value = req.name;
+            document.getElementById("adm-plb-mobile").value = req.mobile;
+            document.getElementById("adm-plb-city").value = req.city;
+            document.getElementById("adm-plb-dealer").value = req.dealer;
+            document.getElementById("adm-plb-id").value = "RBF-PLB-" + Math.floor(1100 + Math.random() * 899);
+            appState.requests = appState.requests.filter(r => r.id !== reqId);
+            await deleteRecord("rbf_requests", reqId);
+            renderAdminPanel();
+            showToast(`Prefilled ${req.name}'s details — click Create & Activate Plumber Account.`, "info");
+        };
+
+        window.adminCreatePlumber = async function(e) {
+            e.preventDefault();
+            const newPlumber = {
+                id: document.getElementById("adm-plb-id").value.trim().toUpperCase(),
+                password: document.getElementById("adm-plb-pass").value.trim(),
+                name: document.getElementById("adm-plb-name").value.trim(),
+                mobile: document.getElementById("adm-plb-mobile").value.trim(),
+                city: document.getElementById("adm-plb-city").value.trim(),
+                dealer: document.getElementById("adm-plb-dealer").value.trim(),
+                tier: "Silver Partner",
+                points: 250,
+                earnings: 0,
+                completedModules: []
+            };
+            appState.plumbers.unshift(newPlumber);
+            await persistRecord("rbf_plumbers", newPlumber.id, newPlumber);
+            e.target.reset();
+            document.getElementById("adm-plb-pass").value = "real1234";
+            renderAdminPanel();
+            renderQuickPlumberChips();
+            showToast(`Issued Plumber ID ${newPlumber.id} with 250 Welcome Points!`, "success");
+        };
+
+        window.adminCreateScheme = async function(e) {
+            e.preventDefault();
+            const scheme = {
+                id: "SCH-" + Math.floor(200 + Math.random() * 799),
+                title: document.getElementById("adm-sch-title").value.trim(),
+                product: document.getElementById("adm-sch-product").value.trim(),
+                pointsPerUnit: parseInt(document.getElementById("adm-sch-pts").value, 10) || 500,
+                validUntil: document.getElementById("adm-sch-valid").value.trim(),
+                desc: document.getElementById("adm-sch-desc").value.trim()
+            };
+            appState.schemes.unshift(scheme);
+            await persistRecord("rbf_schemes", scheme.id, scheme);
+            e.target.reset();
+            renderAdminPanel();
+            showToast(`Scheme "${scheme.title}" published live to all plumbers!`, "success");
+        };
+
+        window.addEventListener("DOMContentLoaded", () => {
+            renderQuickPlumberChips();
+            const savedId = localStorage.getItem(REMEMBER_PLUMBER_ID_KEY);
+            const savedPass = localStorage.getItem(REMEMBER_PLUMBER_PASS_KEY);
+            if (savedId) {
+                const idInput = document.getElementById("login-id-input");
+                const passInput = document.getElementById("login-pass-input");
+                if (idInput) idInput.value = savedId;
+                if (passInput && savedPass) passInput.value = savedPass;
+            }
+            initFirebaseBackend();
+        });
+    </script>
+</body>
+</html>
