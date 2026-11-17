@@ -119,8 +119,7 @@
 
                 <button id="header-admin-btn" type="button" onclick="openAdminDirect()" class="px-2.5 sm:px-3 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-amber-300 text-[11px] sm:text-xs font-bold flex items-center gap-1.5 transition focus:outline-none focus:ring-2 focus:ring-amber-400">
                     <i class="fa-solid fa-shield-halved"></i>
-                    <span class="hidden sm:inline" data-i18n="companyAdmin">Company Admin</span>
-                    <span class="sm:hidden">Admin</span>
+                    <span id="header-admin-btn-text" data-i18n="officialOnly">For Official Only</span>
                 </button>
 
                 <button id="logout-btn" type="button" onclick="handleLogout()" class="hidden items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-[11px] sm:text-xs font-bold shadow transition focus:outline-none focus:ring-2 focus:ring-rose-400">
@@ -205,20 +204,8 @@
                 <!-- Right Login Card (Primary Action First on Mobile) -->
                 <div class="lg:col-span-5 order-1 lg:order-2">
                     <div class="bg-white text-slate-900 rounded-3xl p-5 sm:p-8 shadow-2xl border border-slate-200 max-w-md mx-auto">
-                        <!-- Role Selector Tabs: Plumber Login vs Company Admin -->
-                        <div class="grid grid-cols-2 gap-1.5 p-1.5 rounded-2xl bg-slate-100 border border-slate-200 mb-6" role="tablist">
-                            <button id="role-tab-plumber" type="button" role="tab" aria-selected="true" onclick="switchLoginRole('plumber')" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold bg-navy-950 text-white shadow transition">
-                                <i class="fa-solid fa-wrench text-amber-300"></i>
-                                <span data-i18n="plumberTab">Plumber Login</span>
-                            </button>
-                            <button id="role-tab-admin" type="button" role="tab" aria-selected="false" onclick="switchLoginRole('admin')" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition">
-                                <i class="fa-solid fa-shield-halved text-amber-600"></i>
-                                <span data-i18n="companyAdmin">Company Admin</span>
-                            </button>
-                        </div>
-
                         <!-- ================================================= -->
-                        <!-- A. PLUMBER PARTNER LOGIN FLOW                     -->
+                        <!-- A. PLUMBER PARTNER LOGIN FLOW (DEFAULT VIEW)      -->
                         <!-- ================================================= -->
                         <div id="plumber-login-flow" class="space-y-4">
                             <div class="text-center mb-2">
@@ -265,12 +252,18 @@
                         </div>
 
                         <!-- ================================================= -->
-                        <!-- B. COMPANY ADMIN FIREBASE EMAIL/PASSWORD FLOW     -->
+                        <!-- B. FOR OFFICIAL ONLY (ADMIN LOGIN FLOW)           -->
                         <!-- ================================================= -->
                         <form id="admin-auth-form" onsubmit="handleAdminLogin(event)" class="hidden space-y-4">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-100 text-amber-800">For Official Only</span>
+                                <button type="button" onclick="switchLoginRole('plumber')" class="text-xs font-bold text-sanitary-700 hover:underline flex items-center gap-1">
+                                    <i class="fa-solid fa-arrow-left"></i> Back to Plumber Login
+                                </button>
+                            </div>
                             <div class="text-center mb-4">
-                                <h2 class="text-xl font-extrabold text-slate-900" data-i18n="adminLoginHeading">Company Admin Login</h2>
-                                <p class="text-xs text-slate-500 mt-1" data-i18n="adminLoginSub">Sign in with your authorized corporate Firebase account</p>
+                                <h2 class="text-xl font-extrabold text-slate-900" data-i18n="adminLoginHeading">Official Admin Login</h2>
+                                <p class="text-xs text-slate-500 mt-1" data-i18n="adminLoginSub">Authorized Real Bath Fittings staff sign-in only</p>
                             </div>
 
                             <div>
@@ -1100,7 +1093,8 @@ service cloud.firestore {
                 partnerPortalBadge: "Partner Portal",
                 tagline: "Strength. Style. Perfection. — Plumber Partner Portal",
                 connectingCloud: "Firebase Ready",
-                companyAdmin: "Company Admin",
+                companyAdmin: "For Official Only",
+                officialOnly: "For Official Only",
                 logout: "Logout",
                 officialNetwork: "Official Real Bath Fittings Partner Network",
                 heroHeadline: 'Earn More on Every <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400">Real Bath Fittings</span> Installation.',
@@ -1118,8 +1112,8 @@ service cloud.firestore {
                 passwordLabel: "Password",
                 loginBtnText: "Sign In to Partner Portal",
                 newPlumberReq: "Don't have an account? Request Admin Approval",
-                adminLoginHeading: "Company Admin Login",
-                adminLoginSub: "Sign in with your authorized corporate Firebase account",
+                adminLoginHeading: "Official Admin Login",
+                adminLoginSub: "Authorized Real Bath Fittings staff sign-in only",
                 availablePoints: "Available Points",
                 paidPayouts: "Confirmed Payouts",
                 logInstallationBtn: "Log Installation",
@@ -1133,7 +1127,8 @@ service cloud.firestore {
                 partnerPortalBadge: "पार्टनर पोर्टल",
                 tagline: "मजबूती. स्टाइल. परफेक्शन. — प्लंबर पार्टनर पोर्टल",
                 connectingCloud: "फ़ायरबेस सक्रिय",
-                companyAdmin: "कंपनी एडमिन",
+                companyAdmin: "केवल अधिकारियों के लिए",
+                officialOnly: "केवल अधिकारियों के लिए",
                 logout: "लॉग आउट",
                 officialNetwork: "आधिकारिक रियल बाथ फिटिंग्स पार्टनर नेटवर्क",
                 heroHeadline: 'हर <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400">रियल बाथ फिटिंग्स</span> इंस्टॉलेशन पर अधिक कमाएँ।',
@@ -1151,8 +1146,8 @@ service cloud.firestore {
                 passwordLabel: "पासवर्ड",
                 loginBtnText: "पार्टनर पोर्टल में प्रवेश करें",
                 newPlumberReq: "खाता नहीं है? एडमिन स्वीकृति का अनुरोध करें",
-                adminLoginHeading: "कंपनी एडमिन लॉगिन",
-                adminLoginSub: "अपने अधिकृत कॉर्पोरेट फ़ायरबेस खाते से साइन इन करें",
+                adminLoginHeading: "आधिकारिक एडमिन लॉगिन",
+                adminLoginSub: "केवल अधिकृत रियल बाथ फिटिंग्स स्टाफ के लिए",
                 availablePoints: "उपलब्ध पॉइंट्स",
                 paidPayouts: "कुल भुगतान",
                 logInstallationBtn: "इंस्टॉलेशन दर्ज करें",
@@ -1244,35 +1239,32 @@ service cloud.firestore {
             if (ico) ico.className = isPass ? "fa-solid fa-eye-slash" : "fa-solid fa-eye";
         };
 
-        // Login Role Tab Switcher
+        // Login Role View Switcher (Plumber Default vs For Official Only)
         window.switchLoginRole = function(role) {
-            const tabPlumber = document.getElementById("role-tab-plumber");
-            const tabAdmin = document.getElementById("role-tab-admin");
             const formPlumber = document.getElementById("plumber-login-flow");
             const formAdmin = document.getElementById("admin-auth-form");
+            const headerBtnText = document.getElementById("header-admin-btn-text");
 
             if (role === "admin") {
-                tabAdmin.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold bg-navy-950 text-white shadow transition";
-                tabAdmin.setAttribute("aria-selected", "true");
-                tabPlumber.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition";
-                tabPlumber.setAttribute("aria-selected", "false");
                 formPlumber.classList.add("hidden");
                 formAdmin.classList.remove("hidden");
+                if (headerBtnText) headerBtnText.textContent = currentLang === "hi" ? "प्लंबर लॉगिन" : "Plumber Login";
             } else {
-                tabPlumber.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold bg-navy-950 text-white shadow transition";
-                tabPlumber.setAttribute("aria-selected", "true");
-                tabAdmin.className = "flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition";
-                tabAdmin.setAttribute("aria-selected", "false");
                 formAdmin.classList.add("hidden");
                 formPlumber.classList.remove("hidden");
+                if (headerBtnText) headerBtnText.textContent = I18N[currentLang].officialOnly;
             }
         };
 
         window.openAdminDirect = function() {
             const authView = document.getElementById("auth-view");
+            const formAdmin = document.getElementById("admin-auth-form");
             if (authView && !authView.classList.contains("hidden")) {
-                window.switchLoginRole("admin");
-                document.getElementById("admin-email-input")?.focus();
+                const isCurrentlyAdmin = formAdmin && !formAdmin.classList.contains("hidden");
+                window.switchLoginRole(isCurrentlyAdmin ? "plumber" : "admin");
+                if (!isCurrentlyAdmin) {
+                    document.getElementById("admin-email-input")?.focus();
+                }
             }
         };
 
