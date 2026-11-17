@@ -12,11 +12,9 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#090c12">
     <meta name="description" content="Official Real Bath Fittings Plumber Partner & Loyalty Web App">
-    <link rel="manifest" href="/manifest.json">
     <link id="apple-touch-icon-link" rel="apple-touch-icon">
     <link id="favicon-link" rel="icon" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -100,12 +98,6 @@
 
             <!-- Right Controls (Mobile-Optimized Touch Targets) -->
             <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
-                <button id="pwa-install-btn" type="button" onclick="triggerPwaInstall()" aria-label="Install Web App" class="hidden items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-navy-950 text-[11px] sm:text-xs font-extrabold shadow-lg transition focus:outline-none focus:ring-2 focus:ring-amber-300">
-                    <i class="fa-solid fa-download"></i>
-                    <span class="hidden xs:inline">Install</span>
-                    <span class="hidden sm:inline">App</span>
-                </button>
-
                 <button type="button" onclick="openModal('security-rules-modal')" aria-label="Firebase Security Status" class="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-2 rounded-full bg-navy-900 border border-slate-700 hover:border-amber-400/50 text-[11px] sm:text-xs font-semibold text-slate-200 transition focus:outline-none focus:ring-2 focus:ring-amber-400">
                     <span id="cloud-sync-dot" class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
                     <span id="cloud-sync-text" class="hidden md:inline" data-i18n="connectingCloud">Connecting Firebase...</span>
@@ -802,8 +794,6 @@ service cloud.firestore {
             </div>
             <div class="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-center md:justify-between gap-3 text-[11px]">
                 <div class="flex items-center gap-4">
-                    <button type="button" onclick="openModal('pwa-guide-modal')" class="hover:text-amber-300 underline font-semibold text-amber-200"><i class="fa-solid fa-mobile-screen-button mr-1"></i>Install App</button>
-                    <button type="button" onclick="downloadDeploymentZip()" class="hover:text-amber-300 underline font-semibold text-emerald-300"><i class="fa-solid fa-file-zipper mr-1"></i>Download .ZIP Bundle</button>
                     <button type="button" onclick="openModal('legal-modal')" class="hover:text-amber-300 underline">Terms & Privacy</button>
                 </div>
                 <span class="text-slate-500">Official Partner Support • Real Bath Fittings India</span>
@@ -811,65 +801,12 @@ service cloud.firestore {
         </div>
     </footer>
 
-    <!-- Modal: Install as Mobile / Desktop Web App Guide -->
-    <div id="pwa-guide-modal" role="dialog" aria-modal="true" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 rounded-xl bg-navy-950 text-amber-300 flex items-center justify-center text-base">
-                        <i class="fa-solid fa-mobile-screen-button"></i>
-                    </div>
-                    <h3 class="text-lg font-extrabold text-slate-900">Install Real Bath App</h3>
-                </div>
-                <button type="button" aria-label="Close install guide" onclick="closeModal('pwa-guide-modal')" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <p class="text-xs text-slate-600 leading-relaxed">
-                Install <strong>Real Bath Partner</strong> directly to your phone or computer home screen for full-screen app launch without browser bars:
-            </p>
-            <div id="pwa-direct-install-box" class="hidden">
-                <button type="button" onclick="triggerPwaInstall()" class="w-full py-3 px-4 rounded-xl bg-navy-950 hover:bg-navy-800 text-amber-200 font-extrabold text-xs shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-download"></i>
-                    <span>Install App Now (One-Tap)</span>
-                </button>
-            </div>
-            <div class="p-3 rounded-2xl bg-amber-50 border border-amber-200 space-y-2">
-                <p class="text-xs font-extrabold text-slate-900"><i class="fa-solid fa-file-zipper text-amber-600 mr-1.5"></i>Deployment Bundle (index.html + manifest.json + sw.js)</p>
-                <button type="button" onclick="downloadDeploymentZip()" class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow flex items-center justify-center gap-2 transition">
-                    <i class="fa-solid fa-download"></i>
-                    <span>Download All Files (.ZIP)</span>
-                </button>
-            </div>
-            <div class="space-y-2.5 text-xs text-slate-700">
-                <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200">
-                    <p class="font-extrabold text-slate-900 mb-1"><i class="fa-brands fa-android text-emerald-600 mr-1.5"></i>Android (Chrome / Edge)</p>
-                    <p>Tap the <strong>⋮ (3 dots)</strong> menu at the top-right of Chrome and select <strong>"Add to Home screen"</strong> or <strong>"Install app"</strong>.</p>
-                </div>
-                <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200">
-                    <p class="font-extrabold text-slate-900 mb-1"><i class="fa-brands fa-apple text-slate-800 mr-1.5"></i>iPhone / iPad (Safari)</p>
-                    <p>Tap the <strong>Share (<i class="fa-solid fa-arrow-up-from-bracket"></i>)</strong> button at the bottom of Safari and tap <strong>"Add to Home Screen"</strong>.</p>
-                </div>
-                <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200">
-                    <p class="font-extrabold text-slate-900 mb-1"><i class="fa-solid fa-desktop text-sanitary-600 mr-1.5"></i>Windows / Mac (Chrome / Edge)</p>
-                    <p>Click the <strong>Install icon (<i class="fa-solid fa-laptop-arrow-down"></i>)</strong> on the right side of the browser address bar.</p>
-                </div>
-            </div>
-            <div class="pt-2 border-t border-slate-200">
-                <button type="button" id="download-zip-bundle-btn" onclick="downloadProjectZipBundle()" class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-lg flex items-center justify-center gap-2 transition">
-                    <i class="fa-solid fa-file-zipper"></i>
-                    <span>Download Deployment .ZIP (index.html + manifest.json + sw.js)</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- ===================================================================== -->
-    <!-- PWA MANIFEST, APP ICON GENERATOR & SERVICE WORKER REGISTRATION        -->
+    <!-- FAVICON & BRAND ICON GENERATOR                                        -->
     <!-- ===================================================================== -->
     <script>
-        (function initSelfContainedPWA() {
-            // Render crisp 512x512 & 192x192 PNG app icons from the Real bath fittings brand mark
+        (function initBrandIcon() {
+            // Render crisp 192x192 PNG brand icon from the Real bath fittings brand mark
             function buildAppIconDataUrl(size) {
                 const canvas = document.createElement("canvas");
                 canvas.width = size;
@@ -918,151 +855,6 @@ service cloud.firestore {
             } catch (err) {
                 console.warn("Icon generation skipped:", err);
             }
-
-            // Register static Service Worker (/sw.js) for Vercel & PWABuilder
-            if ("serviceWorker" in navigator && (window.location.protocol === "https:" || window.location.hostname === "localhost")) {
-                navigator.serviceWorker.register("/sw.js").catch(() => {});
-            }
-
-            // One-Click .ZIP Bundle Downloader (index.html + manifest.json + sw.js)
-            window.downloadDeploymentZip = async function() {
-                try {
-                    if (typeof JSZip === "undefined") {
-                        window.showToast?.("ZIP library still loading, please retry in 2 seconds.", "error");
-                        return;
-                    }
-                    const zip = new JSZip();
-                    const fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-                    const manifestContent = JSON.stringify({
-                        name: "Real Bath Fittings — Partner Portal",
-                        short_name: "Real Bath",
-                        description: "Official Plumber Partner & Loyalty Portal for Real Bath Fittings",
-                        start_url: "/",
-                        scope: "/",
-                        display: "standalone",
-                        orientation: "portrait-primary",
-                        background_color: "#090c12",
-                        theme_color: "#090c12",
-                        categories: ["business", "productivity"],
-                        icons: [
-                            { src: "https://placehold.co/192x192/1E1D1B/DFBC68.png?text=Real", sizes: "192x192", type: "image/png", purpose: "any" },
-                            { src: "https://placehold.co/512x512/1E1D1B/DFBC68.png?text=Real", sizes: "512x512", type: "image/png", purpose: "any maskable" }
-                        ]
-                    }, null, 2);
-                    const swContent = [
-                        'const CACHE_NAME = "realbath-partner-v2";',
-                        'const PRECACHE_URLS = ["/", "/index.html", "/manifest.json"];',
-                        'self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE_NAME).then((c) => c.addAll(PRECACHE_URLS)).catch(() => {})); self.skipWaiting(); });',
-                        'self.addEventListener("activate", (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k))))); self.clients.claim(); });',
-                        'self.addEventListener("fetch", (e) => { if (e.request.method !== "GET") return; e.respondWith(fetch(e.request).then((r) => { if (r && r.status === 200 && r.type === "basic") { const cl = r.clone(); caches.open(CACHE_NAME).then((c) => c.put(e.request, cl)); } return r; }).catch(() => caches.match(e.request))); });'
-                    ].join("\n");
-
-                    zip.file("index.html", fullHtml);
-                    zip.file("manifest.json", manifestContent);
-                    zip.file("sw.js", swContent);
-
-                    const blob = await zip.generateAsync({ type: "blob" });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement("a");
-                    a.href = url;
-                    a.download = "realbath-partner-portal.zip";
-                    document.body.appendChild(a);
-                    a.click();
-                    a.remove();
-                    setTimeout(() => URL.revokeObjectURL(url), 5000);
-                    window.showToast?.("Downloaded realbath-partner-portal.zip!", "success");
-                } catch (err) {
-                    console.error("ZIP error:", err);
-                    window.showToast?.("Could not generate ZIP file.", "error");
-                }
-            };
-
-            // One-click client-side ZIP packager for index.html, manifest.json & sw.js
-            window.downloadProjectZipBundle = async function() {
-                const btn = document.getElementById("download-zip-bundle-btn");
-                if (btn) btn.disabled = true;
-                try {
-                    if (!window.JSZip) {
-                        await new Promise((resolve, reject) => {
-                            const s = document.createElement("script");
-                            s.src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
-                            s.onload = resolve;
-                            s.onerror = reject;
-                            document.head.appendChild(s);
-                        });
-                    }
-                    const zip = new window.JSZip();
-                    const fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-                    const manifestJson = JSON.stringify({
-                        name: "Real Bath Fittings — Partner Portal",
-                        short_name: "Real Bath",
-                        description: "Official Plumber Partner & Loyalty Portal for Real Bath Fittings",
-                        start_url: "/",
-                        scope: "/",
-                        display: "standalone",
-                        orientation: "portrait-primary",
-                        background_color: "#090c12",
-                        theme_color: "#090c12",
-                        categories: ["business", "productivity"],
-                        icons: [
-                            { src: "https://placehold.co/192x192/1E1D1B/DFBC68.png?text=Real", sizes: "192x192", type: "image/png", purpose: "any" },
-                            { src: "https://placehold.co/512x512/1E1D1B/DFBC68.png?text=Real", sizes: "512x512", type: "image/png", purpose: "any maskable" }
-                        ]
-                    }, null, 2);
-                    const swJs = `const CACHE_NAME = "realbath-partner-v2";
-const PRECACHE_URLS = ["/", "/index.html", "/manifest.json"];
-
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS)).catch(() => {})
-  );
-  self.skipWaiting();
-});
-
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    )
-  );
-  self.clients.claim();
-});
-
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
-  event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        if (response && response.status === 200 && response.type === "basic") {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-        }
-        return response;
-      })
-      .catch(() => caches.match(event.request))
-  );
-});`;
-
-                    zip.file("index.html", fullHtml);
-                    zip.file("manifest.json", manifestJson);
-                    zip.file("sw.js", swJs);
-
-                    const blob = await zip.generateAsync({ type: "blob" });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement("a");
-                    a.href = url;
-                    a.download = "realbath-partner-portal.zip";
-                    document.body.appendChild(a);
-                    a.click();
-                    a.remove();
-                    URL.revokeObjectURL(url);
-                    window.showToast?.("Downloaded realbath-partner-portal.zip (all 3 files included)!", "success");
-                } catch (err) {
-                    window.showToast?.("Could not create ZIP bundle. Please check your internet connection.", "error");
-                } finally {
-                    if (btn) btn.disabled = false;
-                }
-            };
         })();
     </script>
 
