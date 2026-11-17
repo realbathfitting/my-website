@@ -205,6 +205,29 @@
                 <!-- Right Login Card (Primary Action First on Mobile) -->
                 <div class="lg:col-span-5 order-1 lg:order-2">
                     <div class="bg-white text-slate-900 rounded-3xl p-5 sm:p-8 shadow-2xl border border-slate-200 max-w-md mx-auto">
+                        <!-- Role Selector Tabs: Plumber Login vs Company Admin -->
+                        <div class="grid grid-cols-2 gap-1.5 p-1.5 rounded-2xl bg-slate-100 border border-slate-200 mb-6" role="tablist">
+                            <button id="role-tab-plumber" type="button" role="tab" aria-selected="true" onclick="switchLoginRole('plumber')" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold bg-navy-950 text-white shadow transition">
+                                <i class="fa-solid fa-wrench text-amber-300"></i>
+                                <span data-i18n="plumberTab">Plumber Login</span>
+                            </button>
+                            <button id="role-tab-admin" type="button" role="tab" aria-selected="false" onclick="switchLoginRole('admin')" class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition">
+                                <i class="fa-solid fa-shield-halved text-amber-600"></i>
+                                <span data-i18n="companyAdmin">Company Admin</span>
+                            </button>
+                        </div>
+
+                        <!-- ================================================= -->
+                        <!-- A. PLUMBER PARTNER LOGIN FLOW                     -->
+                        <!-- ================================================= -->
+                        <div id="plumber-login-flow" class="space-y-4">
+                            <div class="text-center mb-2">
+                                <h2 class="text-xl font-extrabold text-slate-900" data-i18n="loginHeading">Plumber Partner Login</h2>
+                                <p class="text-xs text-slate-500 mt-1" data-i18n="loginSub">Enter your registered mobile number & password issued by Company Admin</p>
+                            </div>
+
+                            <form onsubmit="handlePlumberLogin(event)" class="space-y-4">
+                                <div>
                                     <label for="plumber-mobile-input" class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5" data-i18n="mobileLabel">Registered Mobile Number</label>
                                     <div class="flex rounded-xl border border-slate-300 overflow-hidden focus-within:ring-2 focus-within:ring-amber-500 focus-within:border-amber-500">
                                         <span class="px-3.5 py-3 bg-slate-100 text-slate-700 font-extrabold text-sm border-r border-slate-300 select-none">+91</span>
