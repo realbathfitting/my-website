@@ -4,14 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Real Bath Fittings — Plumber Partner Portal</title>
-    <!-- PWA & Mobile Home Screen App Meta Tags -->
-    <meta name="application-name" content="Real Bath Partner">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Real Bath">
-    <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#090c12">
-    <meta name="description" content="Official Real Bath Fittings Plumber Partner & Loyalty Web App">
+    <meta name="description" content="Official Real Bath Fittings Plumber Partner & Loyalty Portal">
     <link id="apple-touch-icon-link" rel="apple-touch-icon">
     <link id="favicon-link" rel="icon" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -124,7 +118,7 @@
     </header>
 
     <!-- ===================================================================== -->
-    <!-- 1. AUTHENTICATION VIEW (FIREBASE PHONE OTP & ADMIN EMAIL AUTH)        -->
+    <!-- 1. AUTHENTICATION VIEW (PLUMBER PARTNER & OFFICIAL ADMIN LOGIN)       -->
     <!-- ===================================================================== -->
     <main id="auth-view" class="flex-1 bg-gradient-to-br from-navy-950 via-navy-900 to-slate-900 text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#fbbf24 1px, transparent 1px); background-size: 28px 28px;"></div>
@@ -353,7 +347,7 @@
             <div class="lg:col-span-7 space-y-4">
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-extrabold text-slate-900">Request Reward Redemption</h3>
-                    <span class="text-xs font-semibold text-slate-500">1 Point = ₹1 Value • Admin Verified</span>
+                    <span class="text-xs font-semibold text-slate-500">1 Point = ₹1 Value • 7 to 30 Days</span>
                 </div>
                 <div id="rewards-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
             </div>
@@ -370,8 +364,8 @@
         <!-- TAB 2: IMMUTABLE POINTS & REDEMPTION LEDGER -->
         <div id="pview-ledger" class="portal-tab-view hidden grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div class="lg:col-span-6 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
-                <h3 class="text-lg font-extrabold text-slate-900">Redemption & Payout Requests</h3>
-                <p class="text-xs text-slate-500">Payouts remain <strong>Pending</strong> until verified and settled by Real Bath Fittings Finance.</p>
+                <h3 class="text-lg font-extrabold text-slate-900">Redemption & Payout Ledger</h3>
+                <p class="text-xs text-slate-500">Redemptions take <strong>7 to 30 working days</strong> to process. Once paid by Admin, click <strong>View Receipt</strong> to see your payment proof.</p>
                 <div id="plumber-redemptions-list" class="space-y-3"></div>
             </div>
             <div class="lg:col-span-6 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
@@ -558,7 +552,7 @@
     <!-- MODALS (ACCESSIBLE WITH ESCAPE KEY CLOSE)                             -->
     <!-- ===================================================================== -->
 
-    <!-- Modal: Log Product Installation + Firebase Storage Photo (<500 KB) -->
+    <!-- Modal: Log Product Installation + Cloud Photo Proof -->
     <div id="claim-modal" role="dialog" aria-modal="true" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4 max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between">
@@ -591,14 +585,14 @@
                     <input id="claim-customer" type="text" required placeholder="e.g. Mr. Sharma - Wakad, Pune" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-xs">
                 </div>
 
-                <!-- Live Camera Photo Capture (<500 KB uploaded to Firebase Storage) -->
+                <!-- Live Camera Photo Capture (Auto-optimized for Spark Plan Cloud Sync) -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 mb-1">Live Site Photo of Installed Product <span class="text-slate-400 font-normal">(Required • &lt;500 KB)</span></label>
+                    <label class="block text-xs font-bold text-slate-600 mb-1">Live Site Photo of Installed Product <span class="text-slate-400 font-normal">(Required)</span></label>
                     <input id="claim-photo-input" type="file" accept="image/jpeg,image/png,image/webp" capture="environment" onchange="handleClaimPhotoSelected(event)" class="hidden">
                     <label id="claim-photo-dropzone" for="claim-photo-input" class="flex flex-col items-center justify-center gap-1.5 p-4 rounded-2xl border-2 border-dashed border-slate-300 hover:border-amber-500 bg-slate-50 cursor-pointer text-center transition">
                         <i class="fa-solid fa-camera text-xl text-sanitary-600"></i>
                         <span class="text-xs font-bold text-slate-700">Tap to Take Live Photo or Upload</span>
-                        <span id="claim-photo-size-hint" class="text-[11px] text-slate-400">Automatically compressed under 500 KB & uploaded securely</span>
+                        <span id="claim-photo-size-hint" class="text-[11px] text-slate-400">Automatically optimized & saved directly to cloud</span>
                     </label>
                     <div id="claim-photo-preview-wrap" class="hidden relative rounded-2xl overflow-hidden border border-slate-300">
                         <img id="claim-photo-preview-img" src="" alt="Preview" class="w-full h-40 object-cover">
@@ -616,7 +610,7 @@
         </div>
     </div>
 
-    <!-- Modal: Full-Screen Site Photo Viewer -->
+    <!-- Modal: Full-Screen Site Photo / Receipt Viewer -->
     <div id="photo-viewer-modal" role="dialog" aria-modal="true" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-lg w-full p-4 shadow-2xl space-y-3">
             <div class="flex items-center justify-between gap-2">
@@ -625,7 +619,7 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <img id="photo-viewer-img" src="" alt="Installation Site Proof" class="w-full max-h-[70vh] object-contain rounded-2xl bg-slate-100">
+            <img id="photo-viewer-img" src="" alt="Proof Image" class="w-full max-h-[70vh] object-contain rounded-2xl bg-slate-100">
         </div>
     </div>
 
@@ -671,12 +665,12 @@
                     <input id="admin-payout-utr" type="text" required placeholder="e.g. UTR42910847291 or Courier AWB" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-mono uppercase">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Upload Payment Receipt / Screenshot <span class="text-slate-400 font-normal">(Visible to Plumber • &lt;500 KB)</span></label>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Upload Payment Receipt / Screenshot <span class="text-slate-400 font-normal">(Visible to Plumber)</span></label>
                     <input id="admin-receipt-input" type="file" accept="image/jpeg,image/png,image/webp" onchange="handleAdminReceiptSelected(event)" class="hidden">
                     <label id="admin-receipt-dropzone" for="admin-receipt-input" class="flex flex-col items-center justify-center gap-1.5 p-4 rounded-2xl border-2 border-dashed border-slate-300 hover:border-emerald-500 bg-slate-50 cursor-pointer text-center transition">
                         <i class="fa-solid fa-file-invoice-dollar text-xl text-emerald-600"></i>
                         <span class="text-xs font-bold text-slate-700">Tap to Upload UPI / Bank Receipt</span>
-                        <span class="text-[11px] text-slate-400">Auto-compressed under 500 KB • Plumber can view receipt</span>
+                        <span class="text-[11px] text-slate-400">Auto-optimized • Plumber can view receipt immediately</span>
                     </label>
                     <div id="admin-receipt-preview-wrap" class="hidden relative rounded-2xl overflow-hidden border border-slate-300">
                         <img id="admin-receipt-preview-img" src="" alt="Receipt Preview" class="w-full h-40 object-cover">
@@ -741,8 +735,8 @@
             </div>
             <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
                 <p><strong>1. Loyalty Eligibility:</strong> Loyalty points are credited only after Company Admin verification of valid Real Bath Fittings serial/invoice numbers and clear installation photos.</p>
-                <p><strong>2. Photo & Data Consent:</strong> Uploaded installation photos are stored securely in Firebase Storage solely for claim audit and warranty verification.</p>
-                <p><strong>3. Payout Reconciliation:</strong> UPI redemptions are processed after KYC/UPI verification and remain in <em>Pending</em> status until bank settlement.</p>
+                <p><strong>2. Photo & Data Consent:</strong> Uploaded installation photos are stored securely in Cloud Firestore solely for claim audit and warranty verification.</p>
+                <p><strong>3. Payout Reconciliation (7 to 30 Days):</strong> UPI redemptions are processed after KYC/UPI verification within 7 to 30 working days and remain in <em>Pending</em> status until bank settlement.</p>
                 <p><strong>4. Account Support & Data Deletion:</strong> Contact Partner Helpline <a href="tel:9718542183" class="font-bold text-slate-900 underline">9718542183</a> / <a href="tel:7982162849" class="font-bold text-slate-900 underline">7982162849</a>, email <a href="mailto:supportatrealbath@gmail.com" class="font-bold text-slate-900 underline">supportatrealbath@gmail.com</a>, or visit <a href="https://www.realbath.in" target="_blank" rel="noopener" class="font-bold text-slate-900 underline">www.realbath.in</a>.</p>
             </div>
         </div>
@@ -757,7 +751,7 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <p class="text-xs text-slate-600">Project: <strong class="font-mono">realbath-b6b12</strong> • Authentication: <strong>Admin-Provisioned Email/Password (Plumbers & Admins)</strong>.</p>
+            <p class="text-xs text-slate-600">Project: <strong class="font-mono">realbath-b6b12</strong> • Works 100% on <strong>Firebase Free Spark Plan</strong> (No paid Storage bucket needed).</p>
             <div class="space-y-1.5">
                 <div class="flex items-center justify-between">
                     <span class="text-xs font-bold text-slate-800">Required Firestore Security Rules</span>
@@ -778,6 +772,7 @@ service cloud.firestore {
     match /plumberProfiles/{uid} {
       allow read: if isSignedIn() && (request.auth.uid == uid || isAdmin());
       allow create, update: if isAdmin();
+      allow update: if isSignedIn() && request.auth.uid == uid;
     }
     match /claims/{claimId} {
       allow read: if isSignedIn() && (resource.data.plumberUid == request.auth.uid || isAdmin());
@@ -845,18 +840,15 @@ service cloud.firestore {
     <!-- ===================================================================== -->
     <script>
         (function initBrandIcon() {
-            // Render crisp 192x192 PNG brand icon from the Real bath fittings brand mark
             function buildAppIconDataUrl(size) {
                 const canvas = document.createElement("canvas");
                 canvas.width = size;
                 canvas.height = size;
                 const ctx = canvas.getContext("2d");
 
-                // Dark charcoal background
                 ctx.fillStyle = "#1E1D1B";
                 ctx.fillRect(0, 0, size, size);
 
-                // Gold metallic gradient border frame
                 const pad = Math.round(size * 0.06);
                 const radius = Math.round(size * 0.16);
                 const grad = ctx.createLinearGradient(0, 0, size, size);
@@ -872,14 +864,12 @@ service cloud.firestore {
                 ctx.roundRect(pad, pad, size - pad * 2, size - pad * 2, radius);
                 ctx.stroke();
 
-                // Brand Title "Real"
                 ctx.fillStyle = grad;
                 ctx.font = `italic 900 ${Math.round(size * 0.31)}px Georgia, serif`;
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.fillText("Real", size * 0.5, size * 0.44);
 
-                // Subtitle "bath fittings"
                 ctx.fillStyle = "#FFFFFF";
                 ctx.font = `600 ${Math.round(size * 0.095)}px Inter, Arial, sans-serif`;
                 ctx.fillText("bath fittings", size * 0.5, size * 0.72);
@@ -898,7 +888,7 @@ service cloud.firestore {
     </script>
 
     <!-- ===================================================================== -->
-    <!-- MAIN FIREBASE APPLICATION MODULE (REALBATH-B6B12)                     -->
+    <!-- MAIN FIREBASE APPLICATION MODULE (SPARK PLAN - ZERO STORAGE BILLING)  -->
     <!-- ===================================================================== -->
     <script type="module">
         import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
@@ -924,12 +914,6 @@ service cloud.firestore {
             runTransaction,
             getDocs
         } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import {
-            getStorage,
-            ref as storageRef,
-            uploadBytes,
-            getDownloadURL
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
 
         // Built-in Firebase configuration for realbath-b6b12
         const firebaseConfig = {
@@ -944,7 +928,6 @@ service cloud.firestore {
         const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const storage = getStorage(app);
 
         // Secondary Firebase app instance used by Admin to register plumbers without logging out
         const secondaryApp = getApps().find(a => a.name === "AdminProvisioner") || initializeApp(firebaseConfig, "AdminProvisioner");
@@ -962,8 +945,8 @@ service cloud.firestore {
         let requestsList = [];
         let plumbersList = [];
         let auditLogsList = [];
-        let selectedPhotoBlob = null;
-        let selectedAdminReceiptBlob = null;
+        let selectedPhotoDataUrl = null;
+        let selectedAdminReceiptDataUrl = null;
         let selectedRedemptionForAdmin = null;
         let selectedRewardItem = null;
         let selectedTrainingModule = null;
@@ -1309,7 +1292,7 @@ service cloud.firestore {
                 subscribePlumberStreams(user.uid);
             } catch (err) {
                 console.error("Session load error:", err);
-                window.showToast("Firestore connection error. Check Firestore rules.", "error");
+                window.showToast(`Firestore connection error: ${err.message || "Check Firestore rules."}`, "error");
             }
         });
 
@@ -1317,7 +1300,6 @@ service cloud.firestore {
         // PLUMBER STREAMS & RENDERING
         // =====================================================================
         function subscribePlumberStreams(uid) {
-            // 1. Live Plumber Profile
             activeUnsubscribers.push(onSnapshot(doc(db, "plumberProfiles", uid), (snap) => {
                 if (!snap.exists()) return;
                 currentProfile = { uid, ...snap.data() };
@@ -1334,14 +1316,12 @@ service cloud.firestore {
                 renderTrainingModules();
             }));
 
-            // 2. Active Schemes
             activeUnsubscribers.push(onSnapshot(collection(db, "schemes"), (snap) => {
                 schemesList = snap.empty ? DEFAULT_SCHEMES : snap.docs.map(d => ({ id: d.id, ...d.data() }));
                 renderPlumberSchemes();
                 populateClaimSchemeDropdown();
             }));
 
-            // 3. Plumber Claims
             const qClaims = query(collection(db, "claims"), where("plumberUid", "==", uid));
             activeUnsubscribers.push(onSnapshot(qClaims, (snap) => {
                 claimsList = snap.docs.map(d => ({ id: d.id, ...d.data() }))
@@ -1349,7 +1329,6 @@ service cloud.firestore {
                 renderPlumberClaims();
             }));
 
-            // 4. Plumber Redemptions
             const qRedeem = query(collection(db, "redemptions"), where("plumberUid", "==", uid));
             activeUnsubscribers.push(onSnapshot(qRedeem, (snap) => {
                 redemptionsList = snap.docs.map(d => ({ id: d.id, ...d.data() }))
@@ -1357,7 +1336,6 @@ service cloud.firestore {
                 renderPlumberRedemptions();
             }));
 
-            // 5. Plumber Points Ledger
             const qLedger = query(collection(db, "pointsLedger"), where("plumberUid", "==", uid));
             activeUnsubscribers.push(onSnapshot(qLedger, (snap) => {
                 ledgerList = snap.docs.map(d => ({ id: d.id, ...d.data() }))
@@ -1522,7 +1500,7 @@ service cloud.firestore {
         function renderCustomerOffers() {
             const grid = document.getElementById("customer-schemes-grid");
             if (!grid) return;
-            grid.innerHTML = CUSTOMER_OFFERS.map((o, idx) => `
+            grid.innerHTML = CUSTOMER_OFFERS.map((o) => `
                 <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
                     <span class="px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-100 text-emerald-800">${o.badge}</span>
                     <h4 class="text-base font-extrabold text-slate-900">${o.title}</h4>
@@ -1586,7 +1564,7 @@ service cloud.firestore {
         }
 
         // =====================================================================
-        // INSTALLATION CLAIM + <500 KB IMAGE COMPRESSION & FIREBASE STORAGE
+        // INSTALLATION CLAIM + SPARK-PLAN CLOUD PHOTO COMPRESSION (<180 KB)
         // =====================================================================
         function populateClaimSchemeDropdown() {
             const sel = document.getElementById("claim-scheme-select");
@@ -1614,36 +1592,36 @@ service cloud.firestore {
             if (preview) preview.textContent = `+${ptsPerUnit * qty} Points`;
         };
 
-        // Strictly compress any site photo under 500 KB (500 * 1024 bytes)
-        async function compressImageUnder500KB(file) {
-            const MAX_BYTES = 490 * 1024;
+        // Compress image cleanly into a compact JPEG Data URL (~120–180 KB) so it saves directly to Firestore on the Free Spark Plan
+        async function compressImageForCloudDoc(file) {
+            const MAX_DATA_URL_LEN = 220 * 1024; // ~165 KB binary image
             return new Promise((resolve, reject) => {
                 const img = new Image();
                 const reader = new FileReader();
                 reader.onload = (ev) => { img.src = ev.target.result; };
                 reader.onerror = reject;
-                img.onload = async () => {
-                    let maxDim = 1400;
-                    let quality = 0.85;
+                img.onload = () => {
+                    let maxDim = 960;
+                    let quality = 0.78;
                     const canvas = document.createElement("canvas");
                     const ctx = canvas.getContext("2d");
 
-                    while (quality >= 0.3) {
+                    while (quality >= 0.25) {
                         const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
                         canvas.width = Math.round(img.width * scale);
                         canvas.height = Math.round(img.height * scale);
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
                         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-                        const blob = await new Promise(res => canvas.toBlob(res, "image/jpeg", quality));
-                        if (blob && blob.size <= MAX_BYTES) {
-                            resolve(blob);
+                        const dataUrl = canvas.toDataURL("image/jpeg", quality);
+                        if (dataUrl.length <= MAX_DATA_URL_LEN) {
+                            resolve(dataUrl);
                             return;
                         }
                         quality -= 0.12;
-                        maxDim = Math.round(maxDim * 0.82);
+                        maxDim = Math.round(maxDim * 0.8);
                     }
-                    canvas.toBlob(res => resolve(res), "image/jpeg", 0.3);
+                    resolve(canvas.toDataURL("image/jpeg", 0.25));
                 };
                 reader.readAsDataURL(file);
             });
@@ -1653,11 +1631,11 @@ service cloud.firestore {
             const file = e.target.files?.[0];
             if (!file) return;
             try {
-                const compressedBlob = await compressImageUnder500KB(file);
-                selectedPhotoBlob = compressedBlob;
-                const kb = Math.round(compressedBlob.size / 1024);
-                document.getElementById("claim-photo-preview-img").src = URL.createObjectURL(compressedBlob);
-                document.getElementById("claim-photo-kb-badge").textContent = `${kb} KB (<500 KB Verified)`;
+                const optimizedDataUrl = await compressImageForCloudDoc(file);
+                selectedPhotoDataUrl = optimizedDataUrl;
+                const kb = Math.max(1, Math.round((optimizedDataUrl.length * 0.75) / 1024));
+                document.getElementById("claim-photo-preview-img").src = optimizedDataUrl;
+                document.getElementById("claim-photo-kb-badge").textContent = `${kb} KB (Cloud Optimized)`;
                 document.getElementById("claim-photo-dropzone").classList.add("hidden");
                 document.getElementById("claim-photo-preview-wrap").classList.remove("hidden");
             } catch (err) {
@@ -1666,7 +1644,7 @@ service cloud.firestore {
         };
 
         window.clearClaimPhoto = function() {
-            selectedPhotoBlob = null;
+            selectedPhotoDataUrl = null;
             const inp = document.getElementById("claim-photo-input");
             if (inp) inp.value = "";
             document.getElementById("claim-photo-dropzone")?.classList.remove("hidden");
@@ -1676,8 +1654,8 @@ service cloud.firestore {
         window.submitInstallationClaim = async function(e) {
             e.preventDefault();
             if (!auth.currentUser || !currentProfile) return;
-            if (!selectedPhotoBlob) {
-                window.showToast("Please capture or upload a live installation photo (<500 KB).", "error");
+            if (!selectedPhotoDataUrl) {
+                window.showToast("Please capture or upload a live installation photo.", "error");
                 return;
             }
 
@@ -1691,18 +1669,12 @@ service cloud.firestore {
                 const serialCode = document.getElementById("claim-code").value.trim().toUpperCase();
                 const customerName = document.getElementById("claim-customer").value.trim();
 
-                // Duplicate Serial/Invoice Prevention
                 const dupCheck = await getDocs(query(collection(db, "claims"), where("serialCode", "==", serialCode)));
                 if (!dupCheck.empty) {
                     window.showToast(`Duplicate Serial/Invoice (${serialCode}) has already been claimed.`, "error");
                     btn.disabled = false;
                     return;
                 }
-
-                // Upload compressed (<500 KB) photo to Firebase Storage
-                const fileRef = storageRef(storage, `claims/${auth.currentUser.uid}/${Date.now()}_${serialCode.replace(/[^A-Z0-9]/g, "")}.jpg`);
-                await uploadBytes(fileRef, selectedPhotoBlob, { contentType: "image/jpeg" });
-                const photoUrl = await getDownloadURL(fileRef);
 
                 await addDoc(collection(db, "claims"), {
                     plumberUid: auth.currentUser.uid,
@@ -1714,7 +1686,7 @@ service cloud.firestore {
                     points: Number(scheme.points) * qty,
                     serialCode,
                     customerName,
-                    photoUrl,
+                    photoUrl: selectedPhotoDataUrl,
                     status: "Pending",
                     createdAt: new Date().toISOString()
                 });
@@ -1722,10 +1694,10 @@ service cloud.firestore {
                 window.closeModal("claim-modal");
                 e.target.reset();
                 window.clearClaimPhoto();
-                window.showToast("Installation claim & photo uploaded! Pending Company Admin audit.", "success");
+                window.showToast("Installation claim & photo submitted! Pending Company Admin audit.", "success");
             } catch (err) {
                 console.error("Claim submit error:", err);
-                window.showToast(`Upload failed: ${err.message}`, "error");
+                window.showToast(`Submission failed: ${err.message}`, "error");
             } finally {
                 btn.disabled = false;
             }
@@ -1733,7 +1705,7 @@ service cloud.firestore {
 
         window.viewSitePhoto = function(url, caption) {
             document.getElementById("photo-viewer-img").src = url;
-            document.getElementById("photo-viewer-caption").textContent = `Installation Proof: ${caption}`;
+            document.getElementById("photo-viewer-caption").textContent = caption;
             window.openModal("photo-viewer-modal");
         };
 
@@ -1744,7 +1716,7 @@ service cloud.firestore {
             selectedRewardItem = REWARD_ITEMS.find(r => r.id === rewardId);
             if (!selectedRewardItem) return;
             document.getElementById("redeem-modal-title").textContent = selectedRewardItem.title;
-            document.getElementById("redeem-modal-desc").textContent = `${selectedRewardItem.points} points will be deducted and queued for Finance settlement.`;
+            document.getElementById("redeem-modal-desc").textContent = `${selectedRewardItem.points} points will be deducted and sent to Company Admin for payout within 7 to 30 working days.`;
             document.getElementById("redeem-input-label").textContent = selectedRewardItem.type === "upi"
                 ? "Enter Your Verified UPI ID (e.g. name@oksbi)"
                 : "Enter Full Shipping Address & Pincode";
@@ -1792,7 +1764,7 @@ service cloud.firestore {
                 await addDoc(collection(db, "pointsLedger"), {
                     plumberUid: uid,
                     delta: -selectedRewardItem.points,
-                    reason: `Redemption Requested: ${selectedRewardItem.title}`,
+                    reason: `Redemption Requested: ${selectedRewardItem.title} (7–30 Days)`,
                     createdAt: new Date().toISOString()
                 });
 
@@ -1895,6 +1867,121 @@ service cloud.firestore {
             temp.remove();
             window.showToast("Firestore Security Rules copied!", "success");
         };
+
+        // =====================================================================
+        // COMPANY ADMIN STREAMS, PLUMBER CREATION & PAYOUT RECEIPT UPLOAD
+        // =====================================================================
+        function subscribeAdminStreams() {
+            activeUnsubscribers.push(onSnapshot(collection(db, "plumberProfiles"), (snap) => {
+                plumbersList = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+                document.getElementById("admin-stat-plumbers").textContent = plumbersList.length;
+                renderAdminPlumbers();
+            }, (err) => {
+                console.error("Admin plumbers stream error:", err);
+                window.showToast(`Plumbers stream error: ${err.message}`, "error");
+            }));
+
+            activeUnsubscribers.push(onSnapshot(collection(db, "claims"), (snap) => {
+                claimsList = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+                    .sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
+                document.getElementById("admin-stat-pending").textContent = claimsList.filter(c => c.status === "Pending").length;
+                renderAdminClaims();
+            }, (err) => {
+                console.error("Admin claims stream error:", err);
+            }));
+
+            activeUnsubscribers.push(onSnapshot(collection(db, "redemptions"), (snap) => {
+                redemptionsList = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+                    .sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
+                document.getElementById("admin-stat-payouts").textContent = redemptionsList.filter(r => r.status === "Pending").length;
+                renderAdminRedemptions();
+            }, (err) => {
+                console.error("Admin redemptions stream error:", err);
+            }));
+
+            activeUnsubscribers.push(onSnapshot(collection(db, "idRequests"), (snap) => {
+                requestsList = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+                    .sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
+                renderAdminRequests();
+            }, (err) => {
+                console.error("Admin requests stream error:", err);
+            }));
+
+            activeUnsubscribers.push(onSnapshot(collection(db, "auditLogs"), (snap) => {
+                auditLogsList = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+                    .sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
+                renderAdminAuditLogs();
+            }, (err) => {
+                console.error("Admin auditLogs stream error:", err);
+            }));
+        }
+
+        // Admin-Only: Create Plumber Firebase Auth User & Profile without logging Admin out
+        window.adminCreatePlumberAccount = async function(e) {
+            e.preventDefault();
+            if (!auth.currentUser) return;
+
+            const name = document.getElementById("adm-plb-name").value.trim();
+            const mobile = document.getElementById("adm-plb-mobile").value.replace(/\D/g, "");
+            const pass = document.getElementById("adm-plb-pass").value;
+            const city = document.getElementById("adm-plb-city").value.trim();
+            const dealer = document.getElementById("adm-plb-dealer").value.trim();
+
+            if (!/^[6-9]\d{9}$/.test(mobile)) {
+                window.showToast("Please enter a valid 10-digit Indian mobile number.", "error");
+                return;
+            }
+            if (pass.length < 6) {
+                window.showToast("Password must be at least 6 characters.", "error");
+                return;
+            }
+
+            const btn = document.getElementById("adm-create-plb-btn");
+            btn.disabled = true;
+
+            try {
+                const syntheticEmail = mobileToAuthEmail(mobile);
+                const cred = await createUserWithEmailAndPassword(secondaryAuth, syntheticEmail, pass);
+                const newPlumberUid = cred.user.uid;
+                await signOut(secondaryAuth);
+
+                const partnerCode = `RBF-${mobile.slice(-4)}-${Math.floor(10 + Math.random() * 89)}`;
+
+                await setDoc(doc(db, "plumberProfiles", newPlumberUid), {
+                    uid: newPlumberUid,
+                    name,
+                    mobile,
+                    city,
+                    dealer,
+                    partnerCode,
+                    tier: "Verified Partner",
+                    points: 0,
+                    totalPaid: 0,
+                    completedModules: [],
+                    createdByAdmin: auth.currentUser.uid,
+                    createdAt: new Date().toISOString()
+                });
+
+                await addDoc(collection(db, "auditLogs"), {
+                    actorUid: auth.currentUser.uid,
+                    action: "CREATE_PLUMBER_ACCOUNT",
+                    detail: `Registered plumber ${name} (+91 ${mobile}) • Code: ${partnerCode}`,
+                    createdAt: new Date().toISOString()
+                });
+
+                e.target.reset();
+                window.showToast(`Plumber ${name} (+91 ${mobile}) registered! Share login credentials with plumber.`, "success");
+            } catch (err) {
+                console.error("Create plumber error:", err);
+                const msg = err.code === "auth/email-already-in-use"
+                    ? "This mobile number is already registered in Firebase Auth."
+                    : (err.message || "Failed to register plumber.");
+                window.showToast(msg, "error");
+            } finally {
+                btn.disabled = false;
+            }
+        };
+
         window.openAdminPayoutModal = function(redemptionId) {
             const r = redemptionsList.find(item => item.id === redemptionId);
             if (!r) return;
@@ -1913,11 +2000,11 @@ service cloud.firestore {
             const file = e.target.files?.[0];
             if (!file) return;
             try {
-                const compressedBlob = await compressImageUnder500KB(file);
-                selectedAdminReceiptBlob = compressedBlob;
-                const kb = Math.round(compressedBlob.size / 1024);
-                document.getElementById("admin-receipt-preview-img").src = URL.createObjectURL(compressedBlob);
-                document.getElementById("admin-receipt-kb-badge").textContent = `${kb} KB (<500 KB Receipt)`;
+                const optimizedDataUrl = await compressImageForCloudDoc(file);
+                selectedAdminReceiptDataUrl = optimizedDataUrl;
+                const kb = Math.max(1, Math.round((optimizedDataUrl.length * 0.75) / 1024));
+                document.getElementById("admin-receipt-preview-img").src = optimizedDataUrl;
+                document.getElementById("admin-receipt-kb-badge").textContent = `${kb} KB (Receipt Ready)`;
                 document.getElementById("admin-receipt-dropzone").classList.add("hidden");
                 document.getElementById("admin-receipt-preview-wrap").classList.remove("hidden");
             } catch (err) {
@@ -1926,7 +2013,7 @@ service cloud.firestore {
         };
 
         window.clearAdminReceipt = function() {
-            selectedAdminReceiptBlob = null;
+            selectedAdminReceiptDataUrl = null;
             const inp = document.getElementById("admin-receipt-input");
             if (inp) inp.value = "";
             document.getElementById("admin-receipt-dropzone")?.classList.remove("hidden");
@@ -1936,7 +2023,7 @@ service cloud.firestore {
         window.submitAdminPayoutReceipt = async function(e) {
             e.preventDefault();
             if (!auth.currentUser || !selectedRedemptionForAdmin) return;
-            if (!selectedAdminReceiptBlob) {
+            if (!selectedAdminReceiptDataUrl) {
                 window.showToast("Please upload the UPI payment receipt or dispatch screenshot.", "error");
                 return;
             }
@@ -1947,11 +2034,6 @@ service cloud.firestore {
             try {
                 const r = selectedRedemptionForAdmin;
                 const utrRef = document.getElementById("admin-payout-utr").value.trim().toUpperCase();
-
-                // Upload receipt image (<500 KB) to Firebase Storage under Admin UID path
-                const receiptRef = storageRef(storage, `claims/${auth.currentUser.uid}/receipt_${r.id}_${Date.now()}.jpg`);
-                await uploadBytes(receiptRef, selectedAdminReceiptBlob, { contentType: "image/jpeg" });
-                const receiptUrl = await getDownloadURL(receiptRef);
 
                 const redRef = doc(db, "redemptions", r.id);
                 await runTransaction(db, async (tx) => {
@@ -1968,7 +2050,7 @@ service cloud.firestore {
                     tx.update(redRef, {
                         status: "Paid",
                         utrRef,
-                        receiptUrl,
+                        receiptUrl: selectedAdminReceiptDataUrl,
                         settledBy: auth.currentUser.uid,
                         settledAt: new Date().toISOString()
                     });
@@ -2043,44 +2125,6 @@ service cloud.firestore {
             }
         };
 
-        window.adminMarkRedemptionPaid = async function(redemptionId) {
-            try {
-                const redRef = doc(db, "redemptions", redemptionId);
-                let redData = null;
-
-                await runTransaction(db, async (tx) => {
-                    const rSnap = await tx.get(redRef);
-                    if (!rSnap.exists()) throw new Error("Redemption not found.");
-                    const r = rSnap.data();
-                    if (r.status !== "Pending") throw new Error("Already settled.");
-
-                    const profileRef = doc(db, "plumberProfiles", r.plumberUid);
-                    const pSnap = await tx.get(profileRef);
-                    if (pSnap.exists()) {
-                        const prevPaid = Number(pSnap.data().totalPaid || 0);
-                        tx.update(profileRef, { totalPaid: prevPaid + Number(r.points || 0) });
-                    }
-                    tx.update(redRef, {
-                        status: "Paid",
-                        settledBy: auth.currentUser.uid,
-                        settledAt: new Date().toISOString()
-                    });
-                    redData = r;
-                });
-
-                await addDoc(collection(db, "auditLogs"), {
-                    actorUid: auth.currentUser.uid,
-                    action: "PAYOUT_SETTLED",
-                    detail: `Settled ${redData?.rewardTitle} for ${redData?.plumberName} (${redData?.destination})`,
-                    createdAt: new Date().toISOString()
-                });
-
-                window.showToast("Payout marked as Paid & settled!", "success");
-            } catch (err) {
-                window.showToast(err.message || "Could not settle payout.", "error");
-            }
-        };
-
         window.adminCreateScheme = async function(e) {
             e.preventDefault();
             try {
@@ -2143,7 +2187,7 @@ service cloud.firestore {
                         <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${c.status === "Approved" ? "bg-emerald-100 text-emerald-800" : c.status === "Rejected" ? "bg-rose-100 text-rose-800" : "bg-amber-100 text-amber-800"}">${c.status}</span>
                     </div>
                     <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-200">
-                        ${c.photoUrl ? `<button type="button" onclick="viewSitePhoto('${c.photoUrl}', '${c.serialCode}')" class="text-xs font-bold text-sanitary-700 hover:underline"><i class="fa-solid fa-image mr-1"></i>Inspect Site Photo</button>` : `<span></span>`}
+                        ${c.photoUrl ? `<button type="button" onclick="viewSitePhoto('${c.photoUrl}', 'Installation Proof: ${c.serialCode}')" class="text-xs font-bold text-sanitary-700 hover:underline"><i class="fa-solid fa-image mr-1"></i>Inspect Site Photo</button>` : `<span></span>`}
                         ${c.status === "Pending" ? `
                             <div class="flex items-center gap-2">
                                 <button type="button" onclick="adminProcessClaim('${c.id}', 'Approved')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold">Approve & Credit</button>
@@ -2174,6 +2218,27 @@ service cloud.firestore {
                         ${r.status === "Pending"
                             ? `<button type="button" onclick="openAdminPayoutModal('${r.id}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold"><i class="fa-solid fa-upload mr-1"></i>Pay & Upload Receipt</button>`
                             : `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800">Paid ✓</span>`}
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function renderAdminRequests() {
+            const list = document.getElementById("admin-requests-list");
+            if (!list) return;
+            if (!requestsList.length) {
+                list.innerHTML = `<p class="text-xs text-slate-400">No pending partner registration requests.</p>`;
+                return;
+            }
+            list.innerHTML = requestsList.map(req => `
+                <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <p class="text-xs font-extrabold text-slate-900">${req.name} (+91 ${req.mobile})</p>
+                        <p class="text-[11px] text-slate-500">${req.city} • Dealer: ${req.dealer}</p>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button type="button" onclick="adminPrefillFromRequest('${req.id}')" class="px-3 py-1.5 rounded-lg bg-navy-950 text-amber-200 text-xs font-bold">Prefill & Create</button>
+                        <button type="button" onclick="adminDeleteRequest('${req.id}')" class="px-2.5 py-1.5 rounded-lg bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-bold">Dismiss</button>
                     </div>
                 </div>
             `).join("");
