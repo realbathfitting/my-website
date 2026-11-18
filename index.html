@@ -644,11 +644,50 @@
                     <label id="redeem-input-label" class="block text-xs font-bold text-slate-700 mb-1">Enter Valid UPI ID or Delivery Address</label>
                     <input id="redeem-destination-input" type="text" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm">
                 </div>
-                <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-[11px] text-amber-900">
-                    Points are placed on hold immediately. Payout status updates from <strong>Pending</strong> to <strong>Paid</strong> once processed by Company Finance.
+                <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-300 text-[11px] text-amber-950 space-y-1">
+                    <p class="font-extrabold flex items-center gap-1.5"><i class="fa-solid fa-clock text-amber-600"></i> Processing Time: 7 to 30 Working Days</p>
+                    <p>This redemption request goes directly to Company Admin. Settlement takes <strong>7 to 30 days</strong> depending on verification. Once paid, the payment receipt will appear in your dashboard.</p>
                 </div>
                 <button type="submit" id="redeem-submit-btn" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white font-bold text-xs shadow transition">
                     Submit Redemption Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Admin Settle Payout & Upload Receipt -->
+    <div id="admin-payout-modal" role="dialog" aria-modal="true" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-extrabold text-slate-900">Settle Payout & Upload Receipt</h3>
+                <button type="button" aria-label="Close payout modal" onclick="closeModal('admin-payout-modal')" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="admin-payout-summary" class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-xs space-y-1"></div>
+            <form onsubmit="submitAdminPayoutReceipt(event)" class="space-y-3.5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">UPI Transaction Ref / UTR / Dispatch No.</label>
+                    <input id="admin-payout-utr" type="text" required placeholder="e.g. UTR42910847291 or Courier AWB" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-mono uppercase">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Upload Payment Receipt / Screenshot <span class="text-slate-400 font-normal">(Visible to Plumber • &lt;500 KB)</span></label>
+                    <input id="admin-receipt-input" type="file" accept="image/jpeg,image/png,image/webp" onchange="handleAdminReceiptSelected(event)" class="hidden">
+                    <label id="admin-receipt-dropzone" for="admin-receipt-input" class="flex flex-col items-center justify-center gap-1.5 p-4 rounded-2xl border-2 border-dashed border-slate-300 hover:border-emerald-500 bg-slate-50 cursor-pointer text-center transition">
+                        <i class="fa-solid fa-file-invoice-dollar text-xl text-emerald-600"></i>
+                        <span class="text-xs font-bold text-slate-700">Tap to Upload UPI / Bank Receipt</span>
+                        <span class="text-[11px] text-slate-400">Auto-compressed under 500 KB • Plumber can view receipt</span>
+                    </label>
+                    <div id="admin-receipt-preview-wrap" class="hidden relative rounded-2xl overflow-hidden border border-slate-300">
+                        <img id="admin-receipt-preview-img" src="" alt="Receipt Preview" class="w-full h-40 object-cover">
+                        <span id="admin-receipt-kb-badge" class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-navy-950/80 text-emerald-300 text-[10px] font-mono"></span>
+                        <button type="button" onclick="clearAdminReceipt()" class="absolute top-2 right-2 px-2.5 py-1 rounded-lg bg-rose-600 text-white text-[11px] font-bold shadow">
+                            Change
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" id="admin-payout-submit-btn" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white font-bold text-xs shadow-lg transition">
+                    Confirm Paid & Publish Receipt to Plumber
                 </button>
             </form>
         </div>
@@ -924,6 +963,8 @@ service cloud.firestore {
         let plumbersList = [];
         let auditLogsList = [];
         let selectedPhotoBlob = null;
+        let selectedAdminReceiptBlob = null;
+        let selectedRedemptionForAdmin = null;
         let selectedRewardItem = null;
         let selectedTrainingModule = null;
         let currentCatalogCategory = "All";
@@ -1357,9 +1398,12 @@ service cloud.firestore {
                             </div>
                             <h4 class="font-extrabold text-sm text-slate-900">${item.title}</h4>
                             <p class="text-xs text-slate-500 leading-relaxed">${item.desc}</p>
+                            <p class="text-[11px] font-semibold text-amber-700 bg-amber-50 border border-amber-200/80 rounded-lg px-2.5 py-1 inline-flex items-center gap-1.5">
+                                <i class="fa-solid fa-clock"></i> Processing time: 7 to 30 days
+                            </p>
                         </div>
                         <button type="button" ${canAfford ? "" : "disabled"} onclick="openRedeemModal('${item.id}')" class="w-full py-2.5 px-3 rounded-xl text-xs font-bold transition ${canAfford ? "bg-emerald-600 hover:bg-emerald-700 text-white shadow" : "bg-slate-100 text-slate-400 cursor-not-allowed"}">
-                            ${canAfford ? "Redeem Now" : `Need ${item.points - bal} more pts`}
+                            ${canAfford ? "Apply for Redeem" : `Need ${item.points - bal} more pts`}
                         </button>
                     </div>
                 `;
@@ -1402,21 +1446,32 @@ service cloud.firestore {
             const el = document.getElementById("plumber-redemptions-list");
             if (!el) return;
             if (!redemptionsList.length) {
-                el.innerHTML = `<p class="text-xs text-slate-400">No redemption requests yet.</p>`;
+                el.innerHTML = `<p class="text-xs text-slate-400">No redemption requests yet. Processing takes 7 to 30 working days after submission.</p>`;
                 return;
             }
             el.innerHTML = redemptionsList.map(r => {
                 const badge = r.status === "Paid" ? "bg-emerald-100 text-emerald-800" : "bg-amber-100 text-amber-800";
                 return `
-                    <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50 flex items-center justify-between gap-3">
-                        <div>
-                            <p class="text-xs font-extrabold text-slate-900">${r.rewardTitle}</p>
-                            <p class="text-[11px] text-slate-500">Destination: <span class="font-mono">${r.destination}</span></p>
+                    <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50 space-y-2">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-xs font-extrabold text-slate-900">${r.rewardTitle}</p>
+                                <p class="text-[11px] text-slate-500">UPI / Address: <span class="font-mono font-semibold text-slate-700">${r.destination}</span></p>
+                                <p class="text-[10px] text-slate-400 mt-0.5">${r.status === "Paid" ? `Ref/UTR: ${r.utrRef || "Verified"}` : "Timeline: 7 to 30 working days from application"}</p>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${badge}">${r.status}</span>
+                                <p class="text-xs font-bold text-slate-700 mt-1">-${r.points} Pts</p>
+                            </div>
                         </div>
-                        <div class="text-right shrink-0">
-                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${badge}">${r.status}</span>
-                            <p class="text-xs font-bold text-slate-700 mt-1">-${r.points} Pts</p>
-                        </div>
+                        ${r.receiptUrl ? `
+                            <div class="pt-2 border-t border-slate-200 flex items-center justify-between">
+                                <span class="text-[11px] font-semibold text-emerald-700"><i class="fa-solid fa-circle-check mr-1"></i>Payment Receipt Attached</span>
+                                <button type="button" onclick="viewSitePhoto('${r.receiptUrl}', 'Payout Receipt (${r.utrRef || r.rewardTitle})')" class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold">
+                                    <i class="fa-solid fa-receipt mr-1"></i>View Receipt
+                                </button>
+                            </div>
+                        ` : ""}
                     </div>
                 `;
             }).join("");
@@ -1742,7 +1797,7 @@ service cloud.firestore {
                 });
 
                 window.closeModal("redeem-modal");
-                window.showToast("Redemption request submitted! Status: Pending payout.", "success");
+                window.showToast("Redemption sent to Admin! Processing takes 7 to 30 working days.", "success");
             } catch (err) {
                 window.showToast(err.message || "Redemption failed.", "error");
             } finally {
@@ -1840,98 +1895,98 @@ service cloud.firestore {
             temp.remove();
             window.showToast("Firestore Security Rules copied!", "success");
         };
+        window.openAdminPayoutModal = function(redemptionId) {
+            const r = redemptionsList.find(item => item.id === redemptionId);
+            if (!r) return;
+            selectedRedemptionForAdmin = r;
+            window.clearAdminReceipt();
+            document.getElementById("admin-payout-utr").value = "";
+            document.getElementById("admin-payout-summary").innerHTML = `
+                <p class="font-extrabold text-slate-900">${r.plumberName} (+91 ${r.plumberMobile})</p>
+                <p class="text-slate-600">Reward: <strong>${r.rewardTitle}</strong> (${r.points} Pts)</p>
+                <p class="text-slate-700">Pay to UPI / Address: <strong class="font-mono text-emerald-700">${r.destination}</strong></p>
+            `;
+            window.openModal("admin-payout-modal");
+        };
 
-        // =====================================================================
-        // COMPANY ADMIN CONSOLE: ADD PLUMBER, ATOMIC APPROVALS & AUDIT LOGS
-        // =====================================================================
-        function subscribeAdminStreams() {
-            activeUnsubscribers.push(onSnapshot(collection(db, "plumberProfiles"), (snap) => {
-                plumbersList = snap.docs.map(d => ({ uid: d.id, ...d.data() }));
-                document.getElementById("admin-stat-plumbers").textContent = plumbersList.length;
-                renderAdminPlumbers();
-            }));
-
-            activeUnsubscribers.push(onSnapshot(collection(db, "claims"), (snap) => {
-                claimsList = snap.docs.map(d => ({ id: d.id, ...d.data() }))
-                    .sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
-                document.getElementById("admin-stat-pending").textContent = claimsList.filter(c => c.status === "Pending").length;
-                renderAdminClaims();
-            }));
-
-            activeUnsubscribers.push(onSnapshot(collection(db, "redemptions"), (snap) => {
-                redemptionsList = snap.docs.map(d => ({ id: d.id, ...d.data() }))
-                    .sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
-                document.getElementById("admin-stat-payouts").textContent = redemptionsList.filter(r => r.status === "Pending").length;
-                renderAdminRedemptions();
-            }));
-
-            activeUnsubscribers.push(onSnapshot(collection(db, "idRequests"), (snap) => {
-                requestsList = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-                renderAdminRequests();
-            }));
-
-            activeUnsubscribers.push(onSnapshot(collection(db, "auditLogs"), (snap) => {
-                auditLogsList = snap.docs.map(d => ({ id: d.id, ...d.data() }))
-                    .sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
-                renderAdminAuditLogs();
-            }));
-        }
-
-        // Admin-Only Plumber Registration (Creates Firebase Auth user + Firestore profile without logging out Admin)
-        window.adminCreatePlumberAccount = async function(e) {
-            e.preventDefault();
-            const name = document.getElementById("adm-plb-name").value.trim();
-            const mobile = document.getElementById("adm-plb-mobile").value.replace(/\D/g, "");
-            const pass = document.getElementById("adm-plb-pass").value.trim();
-            const city = document.getElementById("adm-plb-city").value.trim();
-            const dealer = document.getElementById("adm-plb-dealer").value.trim();
-            const btn = document.getElementById("adm-create-plb-btn");
-
-            if (!/^[6-9]\d{9}$/.test(mobile)) {
-                window.showToast("Enter a valid 10-digit Indian mobile number.", "error");
-                return;
-            }
-            if (pass.length < 6) {
-                window.showToast("Password must be at least 6 characters.", "error");
-                return;
-            }
-
-            btn.disabled = true;
+        window.handleAdminReceiptSelected = async function(e) {
+            const file = e.target.files?.[0];
+            if (!file) return;
             try {
-                const synthEmail = mobileToAuthEmail(mobile);
-                const cred = await createUserWithEmailAndPassword(secondaryAuth, synthEmail, pass);
-                const newUid = cred.user.uid;
-                await signOut(secondaryAuth);
+                const compressedBlob = await compressImageUnder500KB(file);
+                selectedAdminReceiptBlob = compressedBlob;
+                const kb = Math.round(compressedBlob.size / 1024);
+                document.getElementById("admin-receipt-preview-img").src = URL.createObjectURL(compressedBlob);
+                document.getElementById("admin-receipt-kb-badge").textContent = `${kb} KB (<500 KB Receipt)`;
+                document.getElementById("admin-receipt-dropzone").classList.add("hidden");
+                document.getElementById("admin-receipt-preview-wrap").classList.remove("hidden");
+            } catch (err) {
+                window.showToast("Could not process receipt image.", "error");
+            }
+        };
 
-                const partnerCode = `RBF-PLB-${mobile.slice(-4)}`;
-                await setDoc(doc(db, "plumberProfiles", newUid), {
-                    name,
-                    mobile,
-                    city,
-                    dealer,
-                    partnerCode,
-                    tier: "Verified Partner",
-                    points: 0,
-                    totalPaid: 0,
-                    completedModules: [],
-                    createdByAdminUid: auth.currentUser.uid,
-                    createdAt: new Date().toISOString()
+        window.clearAdminReceipt = function() {
+            selectedAdminReceiptBlob = null;
+            const inp = document.getElementById("admin-receipt-input");
+            if (inp) inp.value = "";
+            document.getElementById("admin-receipt-dropzone")?.classList.remove("hidden");
+            document.getElementById("admin-receipt-preview-wrap")?.classList.add("hidden");
+        };
+
+        window.submitAdminPayoutReceipt = async function(e) {
+            e.preventDefault();
+            if (!auth.currentUser || !selectedRedemptionForAdmin) return;
+            if (!selectedAdminReceiptBlob) {
+                window.showToast("Please upload the UPI payment receipt or dispatch screenshot.", "error");
+                return;
+            }
+
+            const btn = document.getElementById("admin-payout-submit-btn");
+            btn.disabled = true;
+
+            try {
+                const r = selectedRedemptionForAdmin;
+                const utrRef = document.getElementById("admin-payout-utr").value.trim().toUpperCase();
+
+                // Upload receipt image (<500 KB) to Firebase Storage under Admin UID path
+                const receiptRef = storageRef(storage, `claims/${auth.currentUser.uid}/receipt_${r.id}_${Date.now()}.jpg`);
+                await uploadBytes(receiptRef, selectedAdminReceiptBlob, { contentType: "image/jpeg" });
+                const receiptUrl = await getDownloadURL(receiptRef);
+
+                const redRef = doc(db, "redemptions", r.id);
+                await runTransaction(db, async (tx) => {
+                    const rSnap = await tx.get(redRef);
+                    if (!rSnap.exists()) throw new Error("Redemption not found.");
+                    if (rSnap.data().status !== "Pending") throw new Error("Already settled.");
+
+                    const profileRef = doc(db, "plumberProfiles", r.plumberUid);
+                    const pSnap = await tx.get(profileRef);
+                    if (pSnap.exists()) {
+                        const prevPaid = Number(pSnap.data().totalPaid || 0);
+                        tx.update(profileRef, { totalPaid: prevPaid + Number(r.points || 0) });
+                    }
+                    tx.update(redRef, {
+                        status: "Paid",
+                        utrRef,
+                        receiptUrl,
+                        settledBy: auth.currentUser.uid,
+                        settledAt: new Date().toISOString()
+                    });
                 });
 
                 await addDoc(collection(db, "auditLogs"), {
                     actorUid: auth.currentUser.uid,
-                    action: "CREATE_PLUMBER",
-                    detail: `Registered plumber ${name} (+91 ${mobile}) • ID: ${partnerCode}`,
+                    action: "PAYOUT_SETTLED_WITH_RECEIPT",
+                    detail: `Paid ${r.rewardTitle} to ${r.plumberName} (${r.destination}) • UTR: ${utrRef}`,
                     createdAt: new Date().toISOString()
                 });
 
-                e.target.reset();
-                window.showToast(`Plumber ${name} registered! Share Mobile (+91 ${mobile}) & Password to log in.`, "success");
+                window.closeModal("admin-payout-modal");
+                window.clearAdminReceipt();
+                window.showToast("Payout marked Paid & receipt uploaded for plumber!", "success");
             } catch (err) {
-                console.error("Create plumber error:", err);
-                window.showToast(err.code === "auth/email-already-in-use"
-                    ? "This mobile number is already registered."
-                    : `Registration failed: ${err.message}`, "error");
+                console.error("Payout receipt upload error:", err);
+                window.showToast(err.message || "Could not settle payout.", "error");
             } finally {
                 btn.disabled = false;
             }
@@ -2108,34 +2163,17 @@ service cloud.firestore {
                 return;
             }
             list.innerHTML = redemptionsList.map(r => `
-                <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50 flex items-center justify-between gap-3">
+                <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
-                        <p class="text-xs font-extrabold text-slate-900">${r.plumberName} — ${r.rewardTitle}</p>
-                        <p class="text-[11px] font-mono text-slate-600">${r.destination} • ${r.points} Pts</p>
+                        <p class="text-xs font-extrabold text-slate-900">${r.plumberName} (+91 ${r.plumberMobile || ""}) — ${r.rewardTitle}</p>
+                        <p class="text-[11px] font-mono text-slate-700 mt-0.5">UPI / Address: <strong>${r.destination}</strong> • ${r.points} Pts</p>
+                        <p class="text-[10px] text-slate-400">Applied: ${new Date(r.createdAt).toLocaleDateString()} • Window: 7–30 Days ${r.utrRef ? `• Ref: ${r.utrRef}` : ""}</p>
                     </div>
-                    ${r.status === "Pending"
-                        ? `<button type="button" onclick="adminMarkRedemptionPaid('${r.id}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shrink-0">Mark Paid</button>`
-                        : `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800">Paid</span>`}
-                </div>
-            `).join("");
-        }
-
-        function renderAdminRequests() {
-            const list = document.getElementById("admin-requests-list");
-            if (!list) return;
-            if (!requestsList.length) {
-                list.innerHTML = `<p class="text-xs text-slate-400">No pending registration requests.</p>`;
-                return;
-            }
-            list.innerHTML = requestsList.map(r => `
-                <div class="p-3 rounded-2xl border border-slate-200 bg-slate-50 flex items-center justify-between gap-2 text-xs">
-                    <div>
-                        <p class="font-extrabold text-slate-900">${r.name} (+91 ${r.mobile})</p>
-                        <p class="text-[11px] text-slate-500">${r.city} • Dealer: ${r.dealer}</p>
-                    </div>
-                    <div class="flex items-center gap-1.5">
-                        <button type="button" onclick="adminPrefillFromRequest('${r.id}')" class="px-2.5 py-1.5 rounded-lg bg-navy-950 text-amber-200 font-bold text-[11px]">Approve & Fill</button>
-                        <button type="button" onclick="adminDeleteRequest('${r.id}')" class="px-2 py-1.5 rounded-lg bg-slate-200 text-slate-700 font-bold text-[11px]">Dismiss</button>
+                    <div class="flex items-center gap-2 shrink-0">
+                        ${r.receiptUrl ? `<button type="button" onclick="viewSitePhoto('${r.receiptUrl}', 'Receipt: ${r.utrRef || r.plumberName}')" class="px-2.5 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold">Receipt</button>` : ""}
+                        ${r.status === "Pending"
+                            ? `<button type="button" onclick="openAdminPayoutModal('${r.id}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold"><i class="fa-solid fa-upload mr-1"></i>Pay & Upload Receipt</button>`
+                            : `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800">Paid ✓</span>`}
                     </div>
                 </div>
             `).join("");
